@@ -132,33 +132,82 @@ Group: dir:0 abs:8 dir,x:10 abs,x:18
 // ====================================================================
 
 "BCC rel8 90"
-	@EACREL8;if (cpu.P.C == 0) @BRANCH8
+	A*X* 		@EACREL8;if (cpu.P.C == 0) @BRANCH8
 
 "BCS rel8 B0"
-	@EACREL8;if (cpu.P.C != 0) @BRANCH8
+	A*X* 		@EACREL8;if (cpu.P.C != 0) @BRANCH8
 
 "BEQ rel8 F0"
-	@EACREL8;if (cpu.P.Z != 0) @BRANCH8
+	A*X* 		@EACREL8;if (cpu.P.Z != 0) @BRANCH8
 
 "BMI rel8 30"
-	@EACREL8;if (cpu.P.M != 0) @BRANCH8
+	A*X* 		@EACREL8;if (cpu.P.M != 0) @BRANCH8
 
 "BNE rel8 D0"
-	@EACREL8;if (cpu.P.Z == 0) @BRANCH8
+	A*X* 		@EACREL8;if (cpu.P.Z == 0) @BRANCH8
 
 "BPL rel8 10"
-	@EACREL8;if (cpu.P.M == 0) @BRANCH8
+	A*X* 		@EACREL8;if (cpu.P.M == 0) @BRANCH8
 
 "BRA rel8 80"
-	@EACREL8;@BRANCH8
+	A*X* 		@EACREL8;@BRANCH8
 
 "BVC rel8 50"
-	@EACREL8;if (cpu.P.V == 0) @BRANCH8
+	A*X* 		@EACREL8;if (cpu.P.V == 0) @BRANCH8
 
 "BVS rel8 70"
-	@EACREL8;if (cpu.P.V != 0) @BRANCH8
+	A*X* 		@EACREL8;if (cpu.P.V != 0) @BRANCH8
 
 "BRL rel16 82"
-	@EACREL16;@BRANCH16
+	A*X* 		@EACREL16;@BRANCH16
 
-	
+// ====================================================================
+
+Group: long:5C [abs]:DC
+
+"JMP * 00"
+	A*X*		@EAC;cpu.PC = MA
+
+Group: abs:4C (abs):6C (abs,X):7C
+
+"JMP * 00"
+	A*X*		@EAC;cpu.PC = (cpu.PC & 0xFF0000) | (MA & 0xFFFF)
+
+"JSL long 22"
+	A*X*		@EAC;cpu.PC--;PUSHB(cpu.PC >> 16);PUSHW(cpu.PC & 0xFFFF);cpu.PC = MA
+
+Group: abs:20 (abs,X):FC
+	A*X*		@EAC;cpu.PC--;PUSHW(cpu.PC & 0xFFFF);cpu.PC = (cpu.PC & 0xFF0000) | (MA & 0xFFFF)
+
+"RTL 6B"
+	A*X*		cpu.PC = POPW();cpu.PC |= (POPB() << 16);cpu.PC++
+
+"RTS 60"
+	A*X* 		cpu.PC = (cpu.PC & 0xFF0000) | POPW();cpu.PC++
+
+
+BRK COP
+
+RTI
+
+CLC CLD CLI CLV SEC SED SEI
+
+REP SEP
+
+LDA LDX LDY STA STX STY STZ
+
+MVN MVP
+
+NOP WDM
+
+PEA PEI PER
+
+PHA PHX PHY PLA PLX PLY
+
+PHB PHD PHK PHP PLB PLD PLP
+
+STP WAI
+
+TAX TAY TSX TXA TXS TXY TYA TYX
+
+TCD TCS TDC TSC
