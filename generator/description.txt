@@ -1,210 +1,360 @@
-
+// ====================================================================
+//
+//		@EAC 				add effective address calculation code.
+//
+//		CPUReadByte()		read byte at MA, put in MB8, return it
+//		CPUReadWord()		read word at MA, put in MB16, return it
+//		CPUWriteByte()		write MB8 to MA
+//		CPUWriteWord()		write MB16 to MA,MA+1
+//		CPUPush8/16(n)		push on stack
+//		CPUPop8/16()		pop off stack, return value.
+//
+//		ALUSetZ8/16(n)		Set cpu.P.Z flag according to n
+//		ALUSetNZ8/16(n)		Set cpu.P.Z and cpu.P.N flags according to n
+//		ALUBitTest8/16(x,z)	Set cpu flags for BIT instruction. 2nd value is the register
+//		ALUAdc8/16(a,b)		Do a+b calculation, uses C updates NZCV
+//		ALUSbc8/16(a,b,f)	Do a-b calculation. f != 0 forces non decimal mode. Uses c,updates NZCV
+//		ALUAsl8/16(&x)		Perform ASL on referenced byte (also LSR, ROL, ROR)
+//
+//		ALUExpandPS(n)		Given a PS value of n, copy into the flags
+//		ALUBuildPS()		Convert the flags to an 8 bit constant
+//		ALUUpdatePS()		Do any function required for emulation/sizing as flags updated
+//
 // ====================================================================
 
 Group: (dir,X):1 stk,S:3 dir:5 [dir]:7 #imm:9 abs:D long:F (dir),Y:11 (dir):12,(stk,S),Y:13 dir:x,15 [dir],y:17 abs,y:19 abs,x:1D long,x:1F
 
+"LDA *" A0
+	A0X*		@EAC;cpu.AL = CPUReadByte();ALUSetNZ8(cpu.AL)
+	A1X*		@EAC;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A)
+
+"STA *" 80
+	A0X*		@EAC;MB8 = cpu.AL;CPUWriteByte()
+	A1X*		@EAC;MB16 = cpu.A;CPUWriteWord()
+
 "ADC *"	60 	
-	A0X*		@EAC;cpu.AL = adc8(cpu.AL,READBYTE())
-	A1X*		@EAC;cpu.A = adc16(cpu.A,READWORD())
+	A0X*		@EAC;cpu.AL = ALUAdc8(cpu.AL,CPUReadByte())
+	A1X*		@EAC;cpu.A = ALUAdc16(cpu.A,CPUReadWord())
 
 "SBC *" E0
-	A0X*		@EAC;cpu.AL = sbc8(cpu.AL,READBYTE(),0)
-	A1X*		@EAC;cpu.A = sbc16(cpu.A,READWORD(),0)
+	A0X*		@EAC;cpu.AL = ALUSbc8(cpu.AL,CPUReadByte(),0)
+	A1X*		@EAC;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0)
 
 "CMP *" C0
-	A0X*		@EAC;sbc8(cpu.AL,READBYTE(),1)
-	A1X*		@EAC;sbc16(cpu.A,READWORD(),1)
+	A0X*		@EAC;ALUSbc8(cpu.AL,CPUReadByte(),1)
+	A1X*		@EAC;ALUSbc16(cpu.A,CPUReadWord(),1)
 
 "AND *" 20
-	A0X*		@EAC;cpu.AL = cpu.AL & READBYTE();setnz8(cpu.AL)
-	A1X*		@EAC;cpu.A = cpu.A & READWORD();setnz16(cpu.A)
+	A0X*		@EAC;cpu.AL = cpu.AL & CPUReadByte();ALUSetNZ8(cpu.AL)
+	A1X*		@EAC;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A)
 
 "EOR *" 40
-	A0X*		@EAC;cpu.AL = cpu.AL ^ READBYTE();setnz8(cpu.AL)
-	A1X*		@EAC;cpu.A = cpu.A ^ READWORD();setnz16(cpu.A)
+	A0X*		@EAC;cpu.AL = cpu.AL ^ CPUReadByte();ALUSetNZ8(cpu.AL)
+	A1X*		@EAC;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A)
 
 "ORA *" 00
-	A0X*		@EAC;cpu.AL = cpu.AL | READBYTE();setnz8(cpu.AL)
-	A1X*		@EAC;cpu.A = cpu.A | READWORD();setnz16(cpu.A)
+	A0X*		@EAC;cpu.AL = cpu.AL | CPUReadByte();ALUSetNZ8(cpu.AL)
+	A1X*		@EAC;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A)
+
+// ====================================================================
+
+Group: #imm:2 dir:6 abs:E dir,Y:16 abs,Y:1E
+
+"LDX *" A0
+	A*X0		@EAC;cpu.XL = CPUReadByte();ALUSetNZ8(cpu.XL)
+	A*X1		@EAC;cpu.X = CPUReadWord();ALUSetNZ16(cpu.X)
+
+"STX *" 80
+	A*X0		@EAC;MB8 = cpu.XL;CPUWriteByte()
+	A*X1		@EAC;MB16 = cpu.X;CPUWriteWord()
+
+Group: #imm:2 dir:6 abs:E dir,X:16 abs,X:1E
+
+"LDY *" A0
+	A*X0		@EAC;cpu.YL = CPUReadByte();ALUSetNZ8(cpu.XL)
+	A*X1		@EAC;cpu.Y = CPUReadWord();ALUSetNZ16(cpu.X)
+
+"STY *" 80
+	A*X0		@EAC;MB8 = cpu.YL;CPUWriteByte()
+	A*X1		@EAC;MB16 = cpu.Y;CPUWriteWord()
+
+Group: dir:64 dir,X:74 abs:9C abs,X:9E
+
+"STZ *" 00 		
+	A0X*		@EAC;MB8 = 0;CPUWriteByte()
+	A1X*		@EAC;MB16 = 0;CPUWriteWord()
+
 
 // ====================================================================
 
 Group: #imm:0 dir:4 abs:c
 
 "CPX *"	E0
-	A*X0		@EAC;sbc8(cpu.XL,READBYTE(),1)
-	A*X1		@EAC;sbc16(cpu.X,READWORD(),1)
+	A*X0		@EAC;ALUSbc8(cpu.XL,CPUReadByte(),1)
+	A*X1		@EAC;ALUSbc16(cpu.X,CPUReadWord(),1)
 
 "CPY *" C0
-	A*X0		@EAC;sbc8(cpu.YL,READBYTE(),1)
-	A*X1		@EAC;sbc16(cpu.Y,READWORD(),1)
+	A*X0		@EAC;ALUSbc8(cpu.YL,CPUReadByte(),1)
+	A*X1		@EAC;ALUSbc16(cpu.Y,CPUReadWord(),1)
 
 // ====================================================================
 
 Group: dir:0 abs:8 dir,x:10 abs,x:18
 
 "DEC *"	C6
-	A0X* 		@EAC;READBYTE();dec8(&MB8);WRITEBYTE();
-	A1X* 		@EAC;READWORD();dec16(&MB16);WRITEWORD();
+	A0X* 		@EAC;CPUReadByte();MB8--;CPUWriteByte();ALUSetNZ8(MB8)
+	A1X* 		@EAC;CPUReadWord();MB16--;CPUWriteWord();ALUSetNZ16(MB16)
 
 "DEC" 	3A
-	A0X* 		dec8(&cpu.AL)
-	A1X*		dec16(&cpu.A)
+	A0X* 		cpu.AL--;ALUSetNZ8(cpu.AL)
+	A1X*		cpu.A--;ALUSetNZ16(cpu.A)
 
 "DEX" 	CA
-	A*X0 		dec8(&cpu.XL)
-	A*X1 		dec16(&cpu.X)
+	A0X* 		cpu.XL--;ALUSetNZ8(cpu.XL)
+	A1X*		cpu.X--;ALUSetNZ16(cpu.X)
 
 "DEY" 	88
-	A*X0 		dec8(&cpu.YL)
-	A*X1 		dec16(&cpu.Y)
+	A0X* 		cpu.YL--;ALUSetNZ8(cpu.YL)
+	A1X*		cpu.Y--;ALUSetNZ16(cpu.Y)
 
 "INC *" E6
-	A0X* 		@EAC;READBYTE();inc8(&MB8);WRITEBYTE();
-	A1X* 		@EAC;READWORD();inc16(&MB16);WRITEWORD();
+	A0X* 		@EAC;CPUReadByte();MB8++;CPUWriteByte();ALUSetNZ8(MB8)
+	A1X* 		@EAC;CPUReadWord();MB16++;CPUWriteWord();ALUSetNZ(MB16)
 
 "INC" 	1A
-	A0X* 		inc8(&cpu.AL)
-	A1X*		inc16(&cpu.A)
+	A0X* 		cpu.AL++;ALUSetNZ8(cpu.AL)
+	A1X*		cpu.A++;ALUSetNZ16(cpu.A)
 
 "INX" 	E8
-	A*X0 		inc8(&cpu.XL)
-	A*X1 		inc16(&cpu.X)
+	A0X* 		cpu.XL++;ALUSetNZ8(cpu.XL)
+	A1X*		cpu.X++;ALUSetNZ16(cpu.X)
 
 "INY" 	C8
-	A*X0 		inc8(&cpu.YL)
-	A*X1 		inc16(&cpu.Y)
+	A0X* 		cpu.YL++;ALUSetNZ8(cpu.YL)
+	A1X*		cpu.Y++;ALUSetNZ16(cpu.Y)
 
 "BIT *"	24 	
-	A0X* 		@EAC;bitTest(READBYTE() << 8,cpu.AL << 8)
-	A1X*		@EAC;bitTest(READWORD(),cpu.A)
+	A0X* 		@EAC;ALUBitTest8(CPUReadByte(),cpu.AL)
+	A1X*		@EAC;ALUBitTest16(CPUReadWord(),cpu.A)
 
-Group: #imm:0
+Group: #imm8:0
 
 "BIT *"	89
-	A0X*		@EAC;bitImmediateTest(READBYTE() & cpu.AL)
-	A1X* 		@EAC;bitImmediateTest(READWORD() & cpu.A)
+	A0X*		@EAC;ALUSetZ8(CPUReadByte() & cpu.AL)
+	A1X* 		@EAC;ALUSetZ16(CPUReadWord() & cpu.A)
 
 // ====================================================================
 
 Group: dir:0 abs:8
 
-"TRB * 14"		
-	A0X* 		@EAC;READBYTE();bitImmediateTest(MB8 & cpu.AL);MB8 &= (cpu.AL ^ 0xFF);WRITEBYTE()
-	A1X* 		@EAC;READWORD();bitImmediateTest(MB16 & cpu.A);MB16 &= (cpu.A ^ 0xFFFF);WRITEWORD()	
+"TRB *" 14
+	A0X* 		@EAC;CPUReadByte();ALUSetZ8(MB8 & cpu.AL);MB8 &= (cpu.AL ^ 0xFF);CPUWriteByte()
+	A1X* 		@EAC;CPUReadWord();ALUSetZ16(MB16 & cpu.A);MB16 &= (cpu.A ^ 0xFFFF);CPUWriteWord()	
 
-"TSB * 14"		
-	A0X* 		@EAC;READBYTE();bitImmediateTest(MB8 & cpu.AL);MB8 |= cpu.AL;WRITEBYTE()
-	A1X* 		@EAC;READWORD();bitImmediateTest(MB16 & cpu.A);MB16 |= cpu.A;WRITEWORD()		
+"TSB *" 04		
+	A0X* 		@EAC;CPUReadByte();ALUSetZ8(MB8 & cpu.AL);MB8 |= cpu.AL;CPUWriteByte()
+	A1X* 		@EAC;CPUReadWord();ALUSetZ16(MB16 & cpu.A);MB16 |= cpu.A;CPUWriteWord()		
 
 // ====================================================================
 
 Group: dir:0 abs:8 dir,x:10 abs,x:18
 
-"ASL * 06"		
-	A0X*		@EAC;READBYTE();asl8(&MB8);WRITEBYTE()
-	A1X*		@EAC;READWORD();asl16(&MB16);WRITEWORD()	
-"ASL A 0A"
-	A0X*		asl8(&cpu.AL)
-	A1X*		asl16(&cpu.A)
+"ASL *" 06		
+	A0X*		@EAC;CPUReadByte();ALUAsl8(&MB8);CPUWriteByte()
+	A1X*		@EAC;CPUReadWord();ALUAsl16(&MB16);CPUWriteWord()	
+"ASL A" 0A
+	A0X*		ALUAsl8(&cpu.AL)
+	A1X*		ALUAsl16(&cpu.A)
 
-"LSR * 46"		
-	A0X*		@EAC;READBYTE();lsr8(&MB8);WRITEBYTE()
-	A1X*		@EAC;READWORD();lsr16(&MB16);WRITEWORD()	
-"LSR A 4A"
-	A0X*		lsr8(&cpu.AL)
-	A1X*		lsr16(&cpu.A)
+"LSR *" 46		
+	A0X*		@EAC;CPUReadByte();ALULsr8(&MB8);CPUWriteByte()
+	A1X*		@EAC;CPUReadWord();ALULsr16(&MB16);CPUWriteWord()	
+"LSR A" 4A
+	A0X*		ALULsr8(&cpu.AL)
+	A1X*		ALULsr16(&cpu.A)
 
-"ROL * 26"		
-	A0X*		@EAC;READBYTE();rol8(&MB8);WRITEBYTE()
-	A1X*		@EAC;READWORD();rol16(&MB16);WRITEWORD()	
-"ROL A 2A"
-	A0X*		rol8(&cpu.AL)
-	A1X*		rol16(&cpu.A)
+"ROL *" 26		
+	A0X*		@EAC;CPUReadByte();ALURol8(&MB8);CPUWriteByte()
+	A1X*		@EAC;CPUReadWord();ALURol16(&MB16);CPUWriteWord()	
+"ROL A" 2A
+	A0X*		ALURol8(&cpu.AL)
+	A1X*		ALURol16(&cpu.A)
 
-"ROR * 66"		
-	A0X*		@EAC;READBYTE();ror8(&MB8);WRITEBYTE()
-	A1X*		@EAC;READWORD();ror16(&MB16);WRITEWORD()	
-"ROR A 6A"
-	A0X*		ror8(&cpu.AL)
-	A1X*		ror16(&cpu.A)
+"ROR *" 66		
+	A0X*		@EAC;CPUReadByte();ALURor8(&MB8);CPUWriteByte()
+	A1X*		@EAC;CPUReadWord();ALURor16(&MB16);CPUWriteWord()	
+"ROR A" 6A
+	A0X*		ALURor8(&cpu.AL)
+	A1X*		ALURor16(&cpu.A)
 
 // ====================================================================
 
-"BCC rel8 90"
-	A*X* 		@EACREL8;if (cpu.P.C == 0) @BRANCH8
+"BCC rel8" 90
+	A*X* 		@EAC;if (cpu.P.C == 0) cpu.PC = MA
 
-"BCS rel8 B0"
-	A*X* 		@EACREL8;if (cpu.P.C != 0) @BRANCH8
+"BCS rel8" B0
+	A*X* 		@EAC;if (cpu.P.C != 0) cpu.PC = MA
 
-"BEQ rel8 F0"
-	A*X* 		@EACREL8;if (cpu.P.Z != 0) @BRANCH8
+"BEQ rel8" F0
+	A*X* 		@EAC;if (cpu.P.Z != 0) cpu.PC = MA
 
-"BMI rel8 30"
-	A*X* 		@EACREL8;if (cpu.P.M != 0) @BRANCH8
+"BMI rel8" 30
+	A*X* 		@EAC;if (cpu.P.M != 0) cpu.PC = MA
 
-"BNE rel8 D0"
-	A*X* 		@EACREL8;if (cpu.P.Z == 0) @BRANCH8
+"BNE rel8" D0
+	A*X* 		@EAC;if (cpu.P.Z == 0) cpu.PC = MA
 
-"BPL rel8 10"
-	A*X* 		@EACREL8;if (cpu.P.M == 0) @BRANCH8
+"BPL rel8" 10
+	A*X* 		@EAC;if (cpu.P.M == 0) cpu.PC = MA
 
-"BRA rel8 80"
-	A*X* 		@EACREL8;@BRANCH8
+"BRA rel8" 80
+	A*X* 		@EAC;cpu.PC = MA
 
-"BVC rel8 50"
-	A*X* 		@EACREL8;if (cpu.P.V == 0) @BRANCH8
+"BVC rel8" 50
+	A*X* 		@EAC;if (cpu.P.V == 0) cpu.PC = MA
 
-"BVS rel8 70"
-	A*X* 		@EACREL8;if (cpu.P.V != 0) @BRANCH8
+"BVS rel8" 70
+	A*X* 		@EAC;if (cpu.P.V != 0) cpu.PC = MA
 
-"BRL rel16 82"
-	A*X* 		@EACREL16;@BRANCH16
+"BRL rel16" 82
+	A*X* 		@EAC;cpu.PC = MA
 
 // ====================================================================
 
 Group: long:5C [abs]:DC
 
-"JMP * 00"
+"JMP *" 00
 	A*X*		@EAC;cpu.PC = MA
 
 Group: abs:4C (abs):6C (abs,X):7C
 
-"JMP * 00"
+"JMP *" 00
 	A*X*		@EAC;cpu.PC = (cpu.PC & 0xFF0000) | (MA & 0xFFFF)
 
-"JSL long 22"
-	A*X*		@EAC;cpu.PC--;PUSHB(cpu.PC >> 16);PUSHW(cpu.PC & 0xFFFF);cpu.PC = MA
+"JSL long" 22
+	A*X*		@EAC;cpu.PC--;CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC & 0xFFFF);cpu.PC = MA
 
 Group: abs:20 (abs,X):FC
-	A*X*		@EAC;cpu.PC--;PUSHW(cpu.PC & 0xFFFF);cpu.PC = (cpu.PC & 0xFF0000) | (MA & 0xFFFF)
+	A*X*		@EAC;cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = (cpu.PC & 0xFF0000) | (MA & 0xFFFF)
 
-"RTL 6B"
-	A*X*		cpu.PC = POPW();cpu.PC |= (POPB() << 16);cpu.PC++
+// ====================================================================
 
-"RTS 60"
-	A*X* 		cpu.PC = (cpu.PC & 0xFF0000) | POPW();cpu.PC++
+"RTL" 6B
+	A*X*		cpu.PC = CPUPop16();cpu.PC |= (CPUPop8() << 16);cpu.PC++
 
+"RTS" 60
+	A*X* 		cpu.PC = (cpu.PC & 0xFF0000) | CPUPop16();cpu.PC++
 
-BRK COP
+"RTI" 40
+	A*X* 		ALUExpandPS(CPUPop8());PC = CPUPop16();PC |= (CPUPop8() << 16);ALUUpdatePS()
 
-RTI
+// ====================================================================
 
-CLC CLD CLI CLV SEC SED SEI
+"BRK" 00
+	A*X*		CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC+1);CPUPush8(ALUBuildPS());MA = 0xFFE6;CPUReadWord();PC = MB
 
-REP SEP
+"COP" 02
+	A*X*		CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC+1);CPUPush8(ALUBuildPS());MA = 0xFFF4;CPUReadWord();PC = MB
 
-LDA LDX LDY STA STX STY STZ
+// ====================================================================
+
+"CLC" 18
+	A*X* 		cpu.P.C = 0
+
+"CLD" D8
+	A*X* 		cpu.P.D = 0
+
+"CLI" 58
+	A*X* 		cpu.P.I = 0
+
+"CLV" B8
+	A*X* 		cpu.P.V = 0
+
+"SEC" 38
+	A*X* 		cpu.P.C = 1
+
+"SED" F8
+	A*X* 		cpu.P.D = 1
+
+"SEI" 78
+	A*X* 		cpu.P.I = 1
+
+"REP #imm8" C2
+	A*X*		@EAC;BUILDPS();ALUExpandPS(ALUBuildPS() & (CPUReadByte()^0xFF));ALUUpdatePS()
+
+"SEP #imm8" E2
+	A*X*		@EAC;BUILDPS();ALUExpandPS(ALUBuildPS() | CPUReadByte());ALUUpdatePS()
+
+// ====================================================================
+
+"NOP" EA 
+	A*X* 		{}
+
+"WDM" 42 
+	A*X* 		cpu.PC++
+
+// ====================================================================
+
+"PEA #imm16" F4 
+	A*X*		@EAC;CPUPush16(CPUReadWord())
+
+"PEI dir" D4 
+	A*X* 		@EAC;CPUPush16(CPUReadWord())
+
+"PER rel16" 62 
+	A*X* 		@EAC;CPUPush16(MA & 0xFFFF)
+
+// ====================================================================
+
+"PHA"	48
+	A0X*		CPUPush8(cpu.AL)
+	A1X* 		CPUPush16(cpu.A)
+
+"PHX"	DA
+	A*X0		CPUPush8(cpu.XL)
+	A*X1 		CPUPush16(cpu.X)
+
+"PHY"	5A
+	A*X0		CPUPush8(cpu.YL)
+	A*X1 		CPUPush16(cpu.Y)
+
+"PLA"	68
+	A0X*		cpu.AL = CPUPop8();ALUSetNZ8(cpu.AL)
+	A1X* 		cpu.A = CPUPop16();ALUSetNZ16(cpu.A)
+
+"PLX"	FA
+	A*X0		cpu.XL = CPUPop8();ALUSetNZ8(cpu.XL)
+	A*X1 		cpu.X = CPUPop16();ALUSetNZ16(cpu.X)
+
+"PLY"	7A
+	A*X0		cpu.YL = CPUPop8();ALUSetNZ8(cpu.YL)
+	A*X1 		cpu.Y = CPUPop16();ALUSetNZ16(cpu.Y)
+
+// ====================================================================
+
+"PHK"	4B
+	A*X*		CPUPush8(cpu.PC >> 16)
+
+"PHP"	08
+	A*X*		CPUPush8(ALUBuildPS())
+
+"PLP"	28
+	A*X* 		MB8 = CPUPull8();ALUExpandPS(MB8);ALUUpdatePS()
+
+"PHB"	8B 	
+	A*X*		CPUPush8(cpu.DBR)
+
+"PLB"	AB 
+	A*X*		cpu.DBR = CPUPull8();ALUSetNZ8(cpu.DBR)
+
+"PHD" 	0B
+	A*X*		CPUPush16(cpu.D)
+
+"PLD"	2B
+	A*X*		cpu.D = CPUPull16();ALUSetNZ16(cpu.D)
+
 
 MVN MVP
-
-NOP WDM
-
-PEA PEI PER
-
-PHA PHX PHY PLA PLX PLY
-
-PHB PHD PHK PHP PLB PLD PLP
 
 STP WAI
 
