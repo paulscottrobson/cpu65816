@@ -1,0 +1,164 @@
+
+// ====================================================================
+
+Group: (dir,X):1 stk,S:3 dir:5 [dir]:7 #imm:9 abs:D long:F (dir),Y:11 (dir):12,(stk,S),Y:13 dir:x,15 [dir],y:17 abs,y:19 abs,x:1D long,x:1F
+
+"ADC *"	60 	
+	A0X*		@EAC;cpu.AL = adc8(cpu.AL,READBYTE())
+	A1X*		@EAC;cpu.A = adc16(cpu.A,READWORD())
+
+"SBC *" E0
+	A0X*		@EAC;cpu.AL = sbc8(cpu.AL,READBYTE(),0)
+	A1X*		@EAC;cpu.A = sbc16(cpu.A,READWORD(),0)
+
+"CMP *" C0
+	A0X*		@EAC;sbc8(cpu.AL,READBYTE(),1)
+	A1X*		@EAC;sbc16(cpu.A,READWORD(),1)
+
+"AND *" 20
+	A0X*		@EAC;cpu.AL = cpu.AL & READBYTE();setnz8(cpu.AL)
+	A1X*		@EAC;cpu.A = cpu.A & READWORD();setnz16(cpu.A)
+
+"EOR *" 40
+	A0X*		@EAC;cpu.AL = cpu.AL ^ READBYTE();setnz8(cpu.AL)
+	A1X*		@EAC;cpu.A = cpu.A ^ READWORD();setnz16(cpu.A)
+
+"ORA *" 00
+	A0X*		@EAC;cpu.AL = cpu.AL | READBYTE();setnz8(cpu.AL)
+	A1X*		@EAC;cpu.A = cpu.A | READWORD();setnz16(cpu.A)
+
+// ====================================================================
+
+Group: #imm:0 dir:4 abs:c
+
+"CPX *"	E0
+	A*X0		@EAC;sbc8(cpu.XL,READBYTE(),1)
+	A*X1		@EAC;sbc16(cpu.X,READWORD(),1)
+
+"CPY *" C0
+	A*X0		@EAC;sbc8(cpu.YL,READBYTE(),1)
+	A*X1		@EAC;sbc16(cpu.Y,READWORD(),1)
+
+// ====================================================================
+
+Group: dir:0 abs:8 dir,x:10 abs,x:18
+
+"DEC *"	C6
+	A0X* 		@EAC;READBYTE();dec8(&MB8);WRITEBYTE();
+	A1X* 		@EAC;READWORD();dec16(&MB16);WRITEWORD();
+
+"DEC" 	3A
+	A0X* 		dec8(&cpu.AL)
+	A1X*		dec16(&cpu.A)
+
+"DEX" 	CA
+	A*X0 		dec8(&cpu.XL)
+	A*X1 		dec16(&cpu.X)
+
+"DEY" 	88
+	A*X0 		dec8(&cpu.YL)
+	A*X1 		dec16(&cpu.Y)
+
+"INC *" E6
+	A0X* 		@EAC;READBYTE();inc8(&MB8);WRITEBYTE();
+	A1X* 		@EAC;READWORD();inc16(&MB16);WRITEWORD();
+
+"INC" 	1A
+	A0X* 		inc8(&cpu.AL)
+	A1X*		inc16(&cpu.A)
+
+"INX" 	E8
+	A*X0 		inc8(&cpu.XL)
+	A*X1 		inc16(&cpu.X)
+
+"INY" 	C8
+	A*X0 		inc8(&cpu.YL)
+	A*X1 		inc16(&cpu.Y)
+
+"BIT *"	24 	
+	A0X* 		@EAC;bitTest(READBYTE() << 8,cpu.AL << 8)
+	A1X*		@EAC;bitTest(READWORD(),cpu.A)
+
+Group: #imm:0
+
+"BIT *"	89
+	A0X*		@EAC;bitImmediateTest(READBYTE() & cpu.AL)
+	A1X* 		@EAC;bitImmediateTest(READWORD() & cpu.A)
+
+// ====================================================================
+
+Group: dir:0 abs:8
+
+"TRB * 14"		
+	A0X* 		@EAC;READBYTE();bitImmediateTest(MB8 & cpu.AL);MB8 &= (cpu.AL ^ 0xFF);WRITEBYTE()
+	A1X* 		@EAC;READWORD();bitImmediateTest(MB16 & cpu.A);MB16 &= (cpu.A ^ 0xFFFF);WRITEWORD()	
+
+"TSB * 14"		
+	A0X* 		@EAC;READBYTE();bitImmediateTest(MB8 & cpu.AL);MB8 |= cpu.AL;WRITEBYTE()
+	A1X* 		@EAC;READWORD();bitImmediateTest(MB16 & cpu.A);MB16 |= cpu.A;WRITEWORD()		
+
+// ====================================================================
+
+Group: dir:0 abs:8 dir,x:10 abs,x:18
+
+"ASL * 06"		
+	A0X*		@EAC;READBYTE();asl8(&MB8);WRITEBYTE()
+	A1X*		@EAC;READWORD();asl16(&MB16);WRITEWORD()	
+"ASL A 0A"
+	A0X*		asl8(&cpu.AL)
+	A1X*		asl16(&cpu.A)
+
+"LSR * 46"		
+	A0X*		@EAC;READBYTE();lsr8(&MB8);WRITEBYTE()
+	A1X*		@EAC;READWORD();lsr16(&MB16);WRITEWORD()	
+"LSR A 4A"
+	A0X*		lsr8(&cpu.AL)
+	A1X*		lsr16(&cpu.A)
+
+"ROL * 26"		
+	A0X*		@EAC;READBYTE();rol8(&MB8);WRITEBYTE()
+	A1X*		@EAC;READWORD();rol16(&MB16);WRITEWORD()	
+"ROL A 2A"
+	A0X*		rol8(&cpu.AL)
+	A1X*		rol16(&cpu.A)
+
+"ROR * 66"		
+	A0X*		@EAC;READBYTE();ror8(&MB8);WRITEBYTE()
+	A1X*		@EAC;READWORD();ror16(&MB16);WRITEWORD()	
+"ROR A 6A"
+	A0X*		ror8(&cpu.AL)
+	A1X*		ror16(&cpu.A)
+
+// ====================================================================
+
+"BCC rel8 90"
+	@EACREL8;if (cpu.P.C == 0) @BRANCH8
+
+"BCS rel8 B0"
+	@EACREL8;if (cpu.P.C != 0) @BRANCH8
+
+"BEQ rel8 F0"
+	@EACREL8;if (cpu.P.Z != 0) @BRANCH8
+
+"BMI rel8 30"
+	@EACREL8;if (cpu.P.M != 0) @BRANCH8
+
+"BNE rel8 D0"
+	@EACREL8;if (cpu.P.Z == 0) @BRANCH8
+
+"BPL rel8 10"
+	@EACREL8;if (cpu.P.M == 0) @BRANCH8
+
+"BRA rel8 80"
+	@EACREL8;@BRANCH8
+
+"BVC rel8 50"
+	@EACREL8;if (cpu.P.V == 0) @BRANCH8
+
+"BVS rel8 70"
+	@EACREL8;if (cpu.P.V != 0) @BRANCH8
+
+"BRL rel16 82"
+	@EACREL16;@BRANCH16
+
+	
