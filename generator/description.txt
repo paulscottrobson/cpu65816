@@ -22,7 +22,7 @@
 //
 // ====================================================================
 
-Group: (dir,X):1 stk,S:3 dir:5 [dir]:7 #imm:9 abs:D long:F (dir),Y:11 (dir):12,(stk,S),Y:13 dir:x,15 [dir],y:17 abs,y:19 abs,x:1D long,x:1F
+Group: (dir,X):1 stk,S:3 dir:5 [dir]:7 #imm:9 abs:D long:F (dir),Y:11 (dir):12 (stk,S),Y:13 dir,x:15 [dir],y:17 abs,y:19 abs,x:1D long,x:1F
 
 "LDA *" A0
 	A0X*		@EAC;cpu.AL = CPUReadByte();ALUSetNZ8(cpu.AL)
@@ -64,17 +64,17 @@ Group: #imm:2 dir:6 abs:E dir,Y:16 abs,Y:1E
 	A*X0		@EAC;cpu.XL = CPUReadByte();ALUSetNZ8(cpu.XL)
 	A*X1		@EAC;cpu.X = CPUReadWord();ALUSetNZ16(cpu.X)
 
+"LDY *" 9E
+	A*X0		@EAC;cpu.YL = CPUReadByte();ALUSetNZ8(cpu.XL)
+	A*X1		@EAC;cpu.Y = CPUReadWord();ALUSetNZ16(cpu.X)
+
+Group: #imm:2 dir:6 abs:E dir,X:16
+
 "STX *" 80
 	A*X0		@EAC;MB8 = cpu.XL;CPUWriteByte()
 	A*X1		@EAC;MB16 = cpu.X;CPUWriteWord()
 
-Group: #imm:2 dir:6 abs:E dir,X:16 abs,X:1E
-
-"LDY *" A0
-	A*X0		@EAC;cpu.YL = CPUReadByte();ALUSetNZ8(cpu.XL)
-	A*X1		@EAC;cpu.Y = CPUReadWord();ALUSetNZ16(cpu.X)
-
-"STY *" 80
+"STY *" 7E
 	A*X0		@EAC;MB8 = cpu.YL;CPUWriteByte()
 	A*X1		@EAC;MB16 = cpu.Y;CPUWriteWord()
 
@@ -235,6 +235,8 @@ Group: abs:4C (abs):6C (abs,X):7C
 	A*X*		@EAC;cpu.PC--;CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC & 0xFFFF);cpu.PC = MA
 
 Group: abs:20 (abs,X):FC
+
+"JSR *" 00
 	A*X*		@EAC;cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = (cpu.PC & 0xFF0000) | (MA & 0xFFFF)
 
 // ====================================================================
@@ -288,7 +290,7 @@ Group: abs:20 (abs,X):FC
 // ====================================================================
 
 "NOP" EA 
-	A*X* 		{}
+	A*X* 		
 
 "WDM" 42 
 	A*X* 		cpu.PC++
@@ -354,10 +356,72 @@ Group: abs:20 (abs,X):FC
 	A*X*		cpu.D = CPUPull16();ALUSetNZ16(cpu.D)
 
 
-MVN MVP
 
-STP WAI
+"TAX" AA
+	A*X0		cpu.XL = cpu.AL;ALUSetNZ8(cpu.XL)
+	A*X1		cpu.X = cpu.A;ALUSetNZ16(cpu.X)
 
-TAX TAY TSX TXA TXS TXY TYA TYX
+"TAY" A8
+	A*X0		cpu.YL = cpu.AL;ALUSetNZ8(cpu.YL)
+	A*X1		cpu.Y = cpu.A;ALUSetNZ16(cpu.Y)
 
-TCD TCS TDC TSC
+"TYX" BB
+	A*X0		cpu.XL = cpu.YL;ALUSetNZ8(cpu.XL)
+	A*X1		cpu.X = cpu.Y;ALUSetNZ16(cpu.X)
+
+"TXY" 9B
+	A*X0		cpu.YL = cpu.XL;ALUSetNZ8(cpu.YL)
+	A*X1		cpu.Y = cpu.X;ALUSetNZ16(cpu.Y)
+
+"TXA" 8A
+	A0X* 		cpu.AL = cpu.XL;ALUSetNZ8(cpu.AL)
+	A1X*		cpu.A = cpu.X;ALUSetNZ16(cpu.A)
+
+"TYA" 98
+	A0X* 		cpu.AL = cpu.YL;ALUSetNZ8(cpu.AL)
+	A1X*		cpu.A = cpu.Y;ALUSetNZ16(cpu.A)
+
+"TSX" BA
+	A0X*		cpu.XL = cpu.S & 0xFF;ALUSetNZ8(cpu.XL)
+	A1X*		cpu.X = cpu.S;ALUSetNZ16(cpu.X)
+
+"TXS" 9A
+	A0X* 		cpu.S = cpu.XL;ALUSetNZ8(cpu.XL)
+	A1X*		cpu.S = cpu.X 			// Doesn't set NZ
+
+// ====================================================================
+
+"TCD" 5B
+	A*X* 		cpu.D = cpu.A;ALUSetNZ16(cpu.D)
+
+"TCS" 1B
+	A*X* 		cpu.S = cpu.A 			// Doesn't set NZ
+
+"TDC" 7B
+	A*X*		cpu.A = cpu.D;ALUSetNZ16(cpu.A)
+
+"TSC" 3B
+	A*X*		cpu.A = cpu.S;ALUSetNZ16(cpu.A)
+
+// ====================================================================
+
+"XBA" EB
+	A*X*		MB8 = cpu.AL;cpu.AL = cpu.AH;cpu.AH = MB8;ALUSetNZ8(cpu.AL)
+
+"XCE" FB
+	A*X* 		MB8 = cpu.P.E;cpu.P.E = cpu.P.C;cpu.P.C = MB8;if (cpu.P.E != 0) { cpu.P.M = cpu.P.X = 1;cpu.S = (cpu.S & 0xFF)|0x100;ALUUpdatePS(); }
+
+
+// ====================================================================
+
+"MVN #imm16" 54
+	A*X* 		
+
+"MVP #imm16" 44
+	A*X* 		
+
+"STP" DB
+	A*X* 		
+
+"WAIT" CB		
+	A*X*		
