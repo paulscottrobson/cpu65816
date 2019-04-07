@@ -39,14 +39,15 @@ class Opcode(object):
 				code = self.sections[k]
 				count += 1
 		assert count == 1
-		h.write("case 0x{4:03x}: ; {0:10} [${1:02x}] A{2}X{3}\n".format(asm,opcode & 0xFF,aConst,xConst,opcode))
+		h.write("case 0x{4:03x}: // {0:10} [${1:02x}] A{2}X{3}\n".format(asm,opcode & 0xFF,aConst,xConst,opcode))
 		code = self.process(code,asm.split(" ")[-1])
 		h.write("    {0};break;\n\n".format(code))
 
 	def process(self,code,aMode):
 		if code.find("@EAC") >= 0:
 			assert aMode.lower() in Opcode.MODES,"Unknown mode "+aMode.lower()
-			code = code.replace("@EAC","EAC_"+Opcode.MODES[aMode.lower()].upper()+"()")
+			#code = code.replace("@EAC","EAC_"+Opcode.MODES[aMode.lower()].upper()+"()")
+			code = code.replace("@EAC","")
 		return code
 
 Opcode.MODES = { "(dir,x)":"indexind","stk,s":"stackrel","dir":"direct","[dir]":"dirfarind",	\
@@ -85,7 +86,7 @@ for l in src:
 	#
 	assert processed,"Line '{0}'".format(l)
 
-h = open("65816.h","w")
+h = open("65816_opcodes.h","w")
 usage = {}
 
 for n in range(0,len(opcodes)):

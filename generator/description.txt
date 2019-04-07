@@ -119,7 +119,7 @@ Group: dir:0 abs:8 dir,x:10 abs,x:18
 
 "INC *" E6
 	A0X* 		@EAC;CPUReadByte();MB8++;CPUWriteByte();ALUSetNZ8(MB8)
-	A1X* 		@EAC;CPUReadWord();MB16++;CPUWriteWord();ALUSetNZ(MB16)
+	A1X* 		@EAC;CPUReadWord();MB16++;CPUWriteWord();ALUSetNZ16(MB16)
 
 "INC" 	1A
 	A0X* 		cpu.AL++;ALUSetNZ8(cpu.AL)
@@ -248,15 +248,15 @@ Group: abs:20 (abs,X):FC
 	A*X* 		cpu.PC = (cpu.PC & 0xFF0000) | CPUPop16();cpu.PC++
 
 "RTI" 40
-	A*X* 		ALUExpandPS(CPUPop8());PC = CPUPop16();PC |= (CPUPop8() << 16);ALUUpdatePS()
+	A*X* 		ALUExpandPS(CPUPop8());cpu.PC = CPUPop16();cpu.PC |= (CPUPop8() << 16);ALUUpdatePS()
 
 // ====================================================================
 
 "BRK" 00
-	A*X*		CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC+1);CPUPush8(ALUBuildPS());MA = 0xFFE6;CPUReadWord();PC = MB
+	A*X*		CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC+1);CPUPush8(ALUBuildPS());MA = 0xFFE6;CPUReadWord();cpu.PC = MB16
 
 "COP" 02
-	A*X*		CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC+1);CPUPush8(ALUBuildPS());MA = 0xFFF4;CPUReadWord();PC = MB
+	A*X*		CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC+1);CPUPush8(ALUBuildPS());MA = 0xFFF4;CPUReadWord();cpu.PC = MB16
 
 // ====================================================================
 
@@ -282,10 +282,10 @@ Group: abs:20 (abs,X):FC
 	A*X* 		cpu.P.I = 1
 
 "REP #imm8" C2
-	A*X*		@EAC;BUILDPS();ALUExpandPS(ALUBuildPS() & (CPUReadByte()^0xFF));ALUUpdatePS()
+	A*X*		@EAC;ALUExpandPS(ALUBuildPS() & (CPUReadByte()^0xFF));ALUUpdatePS()
 
 "SEP #imm8" E2
-	A*X*		@EAC;BUILDPS();ALUExpandPS(ALUBuildPS() | CPUReadByte());ALUUpdatePS()
+	A*X*		@EAC;ALUExpandPS(ALUBuildPS() | CPUReadByte());ALUUpdatePS()
 
 // ====================================================================
 
@@ -341,19 +341,19 @@ Group: abs:20 (abs,X):FC
 	A*X*		CPUPush8(ALUBuildPS())
 
 "PLP"	28
-	A*X* 		MB8 = CPUPull8();ALUExpandPS(MB8);ALUUpdatePS()
+	A*X* 		MB8 = CPUPop8();ALUExpandPS(MB8);ALUUpdatePS()
 
 "PHB"	8B 	
 	A*X*		CPUPush8(cpu.DBR)
 
 "PLB"	AB 
-	A*X*		cpu.DBR = CPUPull8();ALUSetNZ8(cpu.DBR)
+	A*X*		cpu.DBR = CPUPop8();ALUSetNZ8(cpu.DBR)
 
 "PHD" 	0B
 	A*X*		CPUPush16(cpu.D)
 
 "PLD"	2B
-	A*X*		cpu.D = CPUPull16();ALUSetNZ16(cpu.D)
+	A*X*		cpu.D = CPUPop16();ALUSetNZ16(cpu.D)
 
 
 
