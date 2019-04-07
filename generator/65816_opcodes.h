@@ -2375,100 +2375,100 @@ case 0x382: // brl rel16  [$82] A1X1
     EAC_REL16();cpu.PC = MA;break;
 
 case 0x05c: // jmp long   [$5c] A0X0
-    EAC_LONG();cpu.PC = MA;break;
+    EAC_LONG();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x0dc: // jmp [abs]  [$dc] A0X0
-    EAC_ABSFARIND();cpu.PC = MA;break;
+    EAC_ABSFARIND();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x15c: // jmp long   [$5c] A0X1
-    EAC_LONG();cpu.PC = MA;break;
+    EAC_LONG();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x1dc: // jmp [abs]  [$dc] A0X1
-    EAC_ABSFARIND();cpu.PC = MA;break;
+    EAC_ABSFARIND();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x25c: // jmp long   [$5c] A1X0
-    EAC_LONG();cpu.PC = MA;break;
+    EAC_LONG();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x2dc: // jmp [abs]  [$dc] A1X0
-    EAC_ABSFARIND();cpu.PC = MA;break;
+    EAC_ABSFARIND();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x35c: // jmp long   [$5c] A1X1
-    EAC_LONG();cpu.PC = MA;break;
+    EAC_LONG();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x3dc: // jmp [abs]  [$dc] A1X1
-    EAC_ABSFARIND();cpu.PC = MA;break;
+    EAC_ABSFARIND();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x04c: // jmp jmpabs [$4c] A0X0
-    EAC_JMPABS();cpu.PC = MA;break;
+    EAC_JMPABS();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x06c: // jmp (jmpabs) [$6c] A0X0
-    EAC_JMPABSIND();cpu.PC = MA;break;
+    EAC_JMPABSIND();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x07c: // jmp (jmpabs,X) [$7c] A0X0
-    EAC_JMPABSINDX();cpu.PC = MA;break;
+    EAC_JMPABSINDX();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x14c: // jmp jmpabs [$4c] A0X1
-    EAC_JMPABS();cpu.PC = MA;break;
+    EAC_JMPABS();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x16c: // jmp (jmpabs) [$6c] A0X1
-    EAC_JMPABSIND();cpu.PC = MA;break;
+    EAC_JMPABSIND();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x17c: // jmp (jmpabs,X) [$7c] A0X1
-    EAC_JMPABSINDX();cpu.PC = MA;break;
+    EAC_JMPABSINDX();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x24c: // jmp jmpabs [$4c] A1X0
-    EAC_JMPABS();cpu.PC = MA;break;
+    EAC_JMPABS();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x26c: // jmp (jmpabs) [$6c] A1X0
-    EAC_JMPABSIND();cpu.PC = MA;break;
+    EAC_JMPABSIND();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x27c: // jmp (jmpabs,X) [$7c] A1X0
-    EAC_JMPABSINDX();cpu.PC = MA;break;
+    EAC_JMPABSINDX();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x34c: // jmp jmpabs [$4c] A1X1
-    EAC_JMPABS();cpu.PC = MA;break;
+    EAC_JMPABS();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x36c: // jmp (jmpabs) [$6c] A1X1
-    EAC_JMPABSIND();cpu.PC = MA;break;
+    EAC_JMPABSIND();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x37c: // jmp (jmpabs,X) [$7c] A1X1
-    EAC_JMPABSINDX();cpu.PC = MA;break;
+    EAC_JMPABSINDX();cpu.PC = MA | (cpu.PC & 0xFF0000);break;
 
 case 0x022: // jsl long   [$22] A0X0
-    EAC_LONG();cpu.PC--;CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC & 0xFFFF);cpu.PC = MA;break;
+    EAC_LONG();addr = MA;cpu.PC--;CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC & 0xFFFF);cpu.PC = addr | (cpu.PC & 0xFF0000);break;
 
 case 0x122: // jsl long   [$22] A0X1
-    EAC_LONG();cpu.PC--;CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC & 0xFFFF);cpu.PC = MA;break;
+    EAC_LONG();addr = MA;cpu.PC--;CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC & 0xFFFF);cpu.PC = addr | (cpu.PC & 0xFF0000);break;
 
 case 0x222: // jsl long   [$22] A1X0
-    EAC_LONG();cpu.PC--;CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC & 0xFFFF);cpu.PC = MA;break;
+    EAC_LONG();addr = MA;cpu.PC--;CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC & 0xFFFF);cpu.PC = addr | (cpu.PC & 0xFF0000);break;
 
 case 0x322: // jsl long   [$22] A1X1
-    EAC_LONG();cpu.PC--;CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC & 0xFFFF);cpu.PC = MA;break;
+    EAC_LONG();addr = MA;cpu.PC--;CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC & 0xFFFF);cpu.PC = addr | (cpu.PC & 0xFF0000);break;
 
 case 0x020: // jsr jmpabs [$20] A0X0
-    EAC_JMPABS();cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = MA;break;
+    EAC_JMPABS();addr = MA;cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = addr | (cpu.PC & 0xFF0000);break;
 
 case 0x0fc: // jsr (jmpabs,X) [$fc] A0X0
-    EAC_JMPABSINDX();cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = MA;break;
+    EAC_JMPABSINDX();addr = MA;cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = addr | (cpu.PC & 0xFF0000);break;
 
 case 0x120: // jsr jmpabs [$20] A0X1
-    EAC_JMPABS();cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = MA;break;
+    EAC_JMPABS();addr = MA;cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = addr | (cpu.PC & 0xFF0000);break;
 
 case 0x1fc: // jsr (jmpabs,X) [$fc] A0X1
-    EAC_JMPABSINDX();cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = MA;break;
+    EAC_JMPABSINDX();addr = MA;cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = addr | (cpu.PC & 0xFF0000);break;
 
 case 0x220: // jsr jmpabs [$20] A1X0
-    EAC_JMPABS();cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = MA;break;
+    EAC_JMPABS();addr = MA;cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = addr | (cpu.PC & 0xFF0000);break;
 
 case 0x2fc: // jsr (jmpabs,X) [$fc] A1X0
-    EAC_JMPABSINDX();cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = MA;break;
+    EAC_JMPABSINDX();addr = MA;cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = addr | (cpu.PC & 0xFF0000);break;
 
 case 0x320: // jsr jmpabs [$20] A1X1
-    EAC_JMPABS();cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = MA;break;
+    EAC_JMPABS();addr = MA;cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = addr | (cpu.PC & 0xFF0000);break;
 
 case 0x3fc: // jsr (jmpabs,X) [$fc] A1X1
-    EAC_JMPABSINDX();cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = MA;break;
+    EAC_JMPABSINDX();addr = MA;cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = addr | (cpu.PC & 0xFF0000);break;
 
 case 0x06b: // rtl        [$6b] A0X0
     cpu.PC = CPUPop16();cpu.PC |= (CPUPop8() << 16);cpu.PC++;break;

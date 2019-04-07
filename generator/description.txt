@@ -224,20 +224,20 @@ Group: dir:0 abs:8 dir,x:10 abs,x:18
 Group: long:5C [abs]:DC
 
 "JMP *" 00
-	A*X*		@EAC;cpu.PC = MA
+	A*X*		@EAC;cpu.PC = MA | (cpu.PC & 0xFF0000)
 
 Group: jmpabs:4C (jmpabs):6C (jmpabs,X):7C
 
 "JMP *" 00
-	A*X*		@EAC;cpu.PC = MA
+	A*X*		@EAC;cpu.PC = MA | (cpu.PC & 0xFF0000)
 
 "JSL long" 22
-	A*X*		@EAC;cpu.PC--;CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC & 0xFFFF);cpu.PC = MA
+	A*X*		@EAC;addr = MA;cpu.PC--;CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC & 0xFFFF);cpu.PC = addr | (cpu.PC & 0xFF0000)
 
 Group: jmpabs:20 (jmpabs,X):FC
 
 "JSR *" 00
-	A*X*		@EAC;cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = MA
+	A*X*		@EAC;addr = MA;cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = addr | (cpu.PC & 0xFF0000)
 
 // ====================================================================
 

@@ -42,6 +42,7 @@ typedef struct __65816processor {
 static LONG32 MA;												// Memory Address Register
 static BYTE8 MB8;												// Memory Buffer (8 bit read)
 static WORD16 MB16; 											// Memory Buffer (16 bit read)
+static LONG32 addr;												// Temporary for subroutine call
 
 static CPU65816 cpu;											// Processor.
 
@@ -122,16 +123,16 @@ static void ALUUpdatePS() {}
 #define EAC_LONGX()			EAC_LONG();MA = MA + cpu.X.W
 #define EAC_LONGY()			EAC_LONG();MA = MA + cpu.X.Y
 //
-//								[Address] which are far indirect.
+//								[Address] which are far indirect. Always reads from Bank 0
 //
-#define __EAC_READFAR()		CPUReadWord();MA += 2;CPUReadByte();MA = MB16 | (MB8 << 16)
+#define __EAC_READFAR()		MA &= 0xFFFF;CPUReadWord();MA += 2;CPUReadByte();MA = MB16 | (MB8 << 16)
 #define EAC_DIRFARIND()		EAC_DIRECT();__EAC_READFAR()
 #define EAC_ABSFARIND()		EAC_ABSOLUTE();__EAC_READFAR()
 #define EAC_DIRFARINDY()	EAC_DIRECT();__EAC_READFAR();MA = MA + cpu.Y.W
 //
-//								(Address) which are near indirect
+//								(Address) which are near indirect, reads from Bank 0
 //
-#define __EACDIRINDREAD()	CPUReadWord();MA = MB16 | (cpu.DBR << 16)
+#define __EACDIRINDREAD()	MA &= 0xFFFF;CPUReadWord();MA = MB16;
 #define EAC_ABSIND()		EAC_ABSOLUTE();__EACDIRINDREAD()
 #define EAC_DIRIND()		EAC_DIRECT();__EACDIRINDREAD()
 #define EAC_DIRINDY()		EAC_DIRECT();__EACDIRINDREAD();MA += cpu.Y.W
@@ -142,9 +143,10 @@ static void ALUUpdatePS() {}
 //
 //								Jump, which use PC bank not DBR
 //
-#define EAC_JMPABS()		MA = cpu.PC;CPUReadWord();cpu.PC+=2;MA = (cpu.PC & 0xFF0000)|MB16
-#define EAC_JMPABSIND()		EAC_ABSOLUTE();CPUReadWord();MA = (cpu.PC & 0xFF0000)|MB16
-#define EAC_JMPABSINDX()	EAC_JMPABS();CPUReadWord();MB16 = MB16 + cpu.X.W;MA = (cpu.PC & 0xFF0000)|MB16
+#define EAC_JMPABS()		EAC_ABSOLUTE();MA &= 0xFFFF;CPUReadWord();MA = MB16;
+#define __EAC_JUMPABSI(of)	EAC_ABSOLUTE();MA = ((MA+(of)) & 0xFFFF)|(cpu.PC & 0xFF0000);CPUReadWord();MA = MB16;
+#define EAC_JMPABSIND()		__EAC_JUMPABSI(0)
+#define EAC_JMPABSINDX()	__EAC_JUMPABSI(cpu.X.W)
 //
 //								Stack ops, always in bank 0
 //
@@ -156,3 +158,6 @@ static void test(int n) {
 		#include "65816_opcodes.h"
 	}
 }
+
+// TODO: Check against tutorial (DBR usage,def)
+// TODO: Check against spect ( "" )
