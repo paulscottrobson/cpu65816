@@ -6,11 +6,24 @@ typedef unsigned int LONG32;
 
 typedef struct __65816processor {
 
-	union {
-		struct { BYTE8 L,H; } B;
+	union {														// Accumulator A.
+		struct { BYTE8 L,H; } B;								// Note AXY need tweaking for big endian
 		WORD16 W;
 	} A;
 
+	union {														// Index Register X
+		struct { BYTE8 L,H; } B;
+		WORD16 W;
+	} X;
+
+	union {														// Index RegisterY
+		struct { BYTE8 L,H; } B;
+		WORD16 W;
+	} Y;
+
+	LONG32 PC;													// Program Counter
+	WORD16 DBR;													// Data Bank Register
+	WORD16 D;													// Direct Register
 	WORD16 S;													// Stack pointer
 	struct _status {
 		BYTE8 B; 												// Break Flag
@@ -26,11 +39,11 @@ typedef struct __65816processor {
 	} P;
 } CPU65816;
 
-static LONG32 MA;
-static BYTE8 MB8;
-static WORD16 MB16;
+static LONG32 MA;												// Memory Address Register
+static BYTE8 MB8;												// Memory Buffer (8 bit read)
+static WORD16 MB16; 											// Memory Buffer (16 bit read)
 
-static CPU65816 cpu;
+static CPU65816 cpu;											// Processor.
 
 BYTE8 CPUReadByte() { return 0; }
 WORD16 CPUReadWord() { return 0; }
@@ -78,19 +91,5 @@ static void test(int n) {
 		#include "65816_opcodes.h"
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

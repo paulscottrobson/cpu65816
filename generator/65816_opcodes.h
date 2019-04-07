@@ -89,94 +89,94 @@ case 0x1bf: // lda long,x [$bf] A0X1
     ;cpu.A.B.L = CPUReadByte();ALUSetNZ8(cpu.A.B.L);break;
 
 case 0x2a1: // lda (dir,X) [$a1] A1X0
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x2a3: // lda stk,S  [$a3] A1X0
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x2a5: // lda dir    [$a5] A1X0
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x2a7: // lda [dir]  [$a7] A1X0
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x2a9: // lda #imm   [$a9] A1X0
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x2ad: // lda abs    [$ad] A1X0
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x2af: // lda long   [$af] A1X0
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x2b1: // lda (dir),Y [$b1] A1X0
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x2b2: // lda (dir)  [$b2] A1X0
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x2b3: // lda (stk,S),Y [$b3] A1X0
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x2b5: // lda dir,x  [$b5] A1X0
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x2b7: // lda [dir],y [$b7] A1X0
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x2b9: // lda abs,y  [$b9] A1X0
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x2bd: // lda abs,x  [$bd] A1X0
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x2bf: // lda long,x [$bf] A1X0
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x3a1: // lda (dir,X) [$a1] A1X1
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x3a3: // lda stk,S  [$a3] A1X1
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x3a5: // lda dir    [$a5] A1X1
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x3a7: // lda [dir]  [$a7] A1X1
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x3a9: // lda #imm   [$a9] A1X1
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x3ad: // lda abs    [$ad] A1X1
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x3af: // lda long   [$af] A1X1
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x3b1: // lda (dir),Y [$b1] A1X1
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x3b2: // lda (dir)  [$b2] A1X1
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x3b3: // lda (stk,S),Y [$b3] A1X1
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x3b5: // lda dir,x  [$b5] A1X1
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x3b7: // lda [dir],y [$b7] A1X1
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x3b9: // lda abs,y  [$b9] A1X1
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x3bd: // lda abs,x  [$bd] A1X1
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x3bf: // lda long,x [$bf] A1X1
-    ;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x081: // sta (dir,X) [$81] A0X0
     ;MB8 = cpu.A.B.L;CPUWriteByte();break;
@@ -263,88 +263,88 @@ case 0x19f: // sta long,x [$9f] A0X1
     ;MB8 = cpu.A.B.L;CPUWriteByte();break;
 
 case 0x281: // sta (dir,X) [$81] A1X0
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x283: // sta stk,S  [$83] A1X0
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x285: // sta dir    [$85] A1X0
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x287: // sta [dir]  [$87] A1X0
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x28d: // sta abs    [$8d] A1X0
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x28f: // sta long   [$8f] A1X0
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x291: // sta (dir),Y [$91] A1X0
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x292: // sta (dir)  [$92] A1X0
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x293: // sta (stk,S),Y [$93] A1X0
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x295: // sta dir,x  [$95] A1X0
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x297: // sta [dir],y [$97] A1X0
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x299: // sta abs,y  [$99] A1X0
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x29d: // sta abs,x  [$9d] A1X0
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x29f: // sta long,x [$9f] A1X0
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x381: // sta (dir,X) [$81] A1X1
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x383: // sta stk,S  [$83] A1X1
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x385: // sta dir    [$85] A1X1
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x387: // sta [dir]  [$87] A1X1
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x38d: // sta abs    [$8d] A1X1
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x38f: // sta long   [$8f] A1X1
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x391: // sta (dir),Y [$91] A1X1
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x392: // sta (dir)  [$92] A1X1
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x393: // sta (stk,S),Y [$93] A1X1
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x395: // sta dir,x  [$95] A1X1
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x397: // sta [dir],y [$97] A1X1
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x399: // sta abs,y  [$99] A1X1
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x39d: // sta abs,x  [$9d] A1X1
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x39f: // sta long,x [$9f] A1X1
-    ;MB16 = cpu.A;CPUWriteWord();break;
+    ;MB16 = cpu.A.W;CPUWriteWord();break;
 
 case 0x061: // adc (dir,X) [$61] A0X0
     ;cpu.A.B.L = ALUAdc8(cpu.A.B.L,CPUReadByte());break;
@@ -437,94 +437,94 @@ case 0x17f: // adc long,x [$7f] A0X1
     ;cpu.A.B.L = ALUAdc8(cpu.A.B.L,CPUReadByte());break;
 
 case 0x261: // adc (dir,X) [$61] A1X0
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x263: // adc stk,S  [$63] A1X0
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x265: // adc dir    [$65] A1X0
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x267: // adc [dir]  [$67] A1X0
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x269: // adc #imm   [$69] A1X0
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x26d: // adc abs    [$6d] A1X0
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x26f: // adc long   [$6f] A1X0
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x271: // adc (dir),Y [$71] A1X0
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x272: // adc (dir)  [$72] A1X0
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x273: // adc (stk,S),Y [$73] A1X0
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x275: // adc dir,x  [$75] A1X0
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x277: // adc [dir],y [$77] A1X0
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x279: // adc abs,y  [$79] A1X0
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x27d: // adc abs,x  [$7d] A1X0
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x27f: // adc long,x [$7f] A1X0
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x361: // adc (dir,X) [$61] A1X1
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x363: // adc stk,S  [$63] A1X1
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x365: // adc dir    [$65] A1X1
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x367: // adc [dir]  [$67] A1X1
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x369: // adc #imm   [$69] A1X1
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x36d: // adc abs    [$6d] A1X1
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x36f: // adc long   [$6f] A1X1
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x371: // adc (dir),Y [$71] A1X1
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x372: // adc (dir)  [$72] A1X1
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x373: // adc (stk,S),Y [$73] A1X1
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x375: // adc dir,x  [$75] A1X1
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x377: // adc [dir],y [$77] A1X1
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x379: // adc abs,y  [$79] A1X1
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x37d: // adc abs,x  [$7d] A1X1
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x37f: // adc long,x [$7f] A1X1
-    ;cpu.A = ALUAdc16(cpu.A,CPUReadWord());break;
+    ;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord());break;
 
 case 0x0e1: // sbc (dir,X) [$e1] A0X0
     ;cpu.A.B.L = ALUSbc8(cpu.A.B.L,CPUReadByte(),0);break;
@@ -617,94 +617,94 @@ case 0x1ff: // sbc long,x [$ff] A0X1
     ;cpu.A.B.L = ALUSbc8(cpu.A.B.L,CPUReadByte(),0);break;
 
 case 0x2e1: // sbc (dir,X) [$e1] A1X0
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x2e3: // sbc stk,S  [$e3] A1X0
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x2e5: // sbc dir    [$e5] A1X0
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x2e7: // sbc [dir]  [$e7] A1X0
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x2e9: // sbc #imm   [$e9] A1X0
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x2ed: // sbc abs    [$ed] A1X0
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x2ef: // sbc long   [$ef] A1X0
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x2f1: // sbc (dir),Y [$f1] A1X0
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x2f2: // sbc (dir)  [$f2] A1X0
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x2f3: // sbc (stk,S),Y [$f3] A1X0
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x2f5: // sbc dir,x  [$f5] A1X0
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x2f7: // sbc [dir],y [$f7] A1X0
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x2f9: // sbc abs,y  [$f9] A1X0
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x2fd: // sbc abs,x  [$fd] A1X0
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x2ff: // sbc long,x [$ff] A1X0
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x3e1: // sbc (dir,X) [$e1] A1X1
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x3e3: // sbc stk,S  [$e3] A1X1
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x3e5: // sbc dir    [$e5] A1X1
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x3e7: // sbc [dir]  [$e7] A1X1
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x3e9: // sbc #imm   [$e9] A1X1
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x3ed: // sbc abs    [$ed] A1X1
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x3ef: // sbc long   [$ef] A1X1
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x3f1: // sbc (dir),Y [$f1] A1X1
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x3f2: // sbc (dir)  [$f2] A1X1
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x3f3: // sbc (stk,S),Y [$f3] A1X1
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x3f5: // sbc dir,x  [$f5] A1X1
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x3f7: // sbc [dir],y [$f7] A1X1
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x3f9: // sbc abs,y  [$f9] A1X1
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x3fd: // sbc abs,x  [$fd] A1X1
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x3ff: // sbc long,x [$ff] A1X1
-    ;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0);break;
+    ;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0);break;
 
 case 0x0c1: // cmp (dir,X) [$c1] A0X0
     ;ALUSbc8(cpu.A.B.L,CPUReadByte(),1);break;
@@ -797,94 +797,94 @@ case 0x1df: // cmp long,x [$df] A0X1
     ;ALUSbc8(cpu.A.B.L,CPUReadByte(),1);break;
 
 case 0x2c1: // cmp (dir,X) [$c1] A1X0
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x2c3: // cmp stk,S  [$c3] A1X0
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x2c5: // cmp dir    [$c5] A1X0
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x2c7: // cmp [dir]  [$c7] A1X0
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x2c9: // cmp #imm   [$c9] A1X0
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x2cd: // cmp abs    [$cd] A1X0
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x2cf: // cmp long   [$cf] A1X0
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x2d1: // cmp (dir),Y [$d1] A1X0
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x2d2: // cmp (dir)  [$d2] A1X0
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x2d3: // cmp (stk,S),Y [$d3] A1X0
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x2d5: // cmp dir,x  [$d5] A1X0
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x2d7: // cmp [dir],y [$d7] A1X0
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x2d9: // cmp abs,y  [$d9] A1X0
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x2dd: // cmp abs,x  [$dd] A1X0
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x2df: // cmp long,x [$df] A1X0
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x3c1: // cmp (dir,X) [$c1] A1X1
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x3c3: // cmp stk,S  [$c3] A1X1
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x3c5: // cmp dir    [$c5] A1X1
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x3c7: // cmp [dir]  [$c7] A1X1
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x3c9: // cmp #imm   [$c9] A1X1
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x3cd: // cmp abs    [$cd] A1X1
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x3cf: // cmp long   [$cf] A1X1
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x3d1: // cmp (dir),Y [$d1] A1X1
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x3d2: // cmp (dir)  [$d2] A1X1
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x3d3: // cmp (stk,S),Y [$d3] A1X1
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x3d5: // cmp dir,x  [$d5] A1X1
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x3d7: // cmp [dir],y [$d7] A1X1
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x3d9: // cmp abs,y  [$d9] A1X1
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x3dd: // cmp abs,x  [$dd] A1X1
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x3df: // cmp long,x [$df] A1X1
-    ;ALUSbc16(cpu.A,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.A.W,CPUReadWord(),1);break;
 
 case 0x021: // and (dir,X) [$21] A0X0
     ;cpu.A.B.L = cpu.A.B.L & CPUReadByte();ALUSetNZ8(cpu.A.B.L);break;
@@ -977,94 +977,94 @@ case 0x13f: // and long,x [$3f] A0X1
     ;cpu.A.B.L = cpu.A.B.L & CPUReadByte();ALUSetNZ8(cpu.A.B.L);break;
 
 case 0x221: // and (dir,X) [$21] A1X0
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x223: // and stk,S  [$23] A1X0
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x225: // and dir    [$25] A1X0
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x227: // and [dir]  [$27] A1X0
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x229: // and #imm   [$29] A1X0
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x22d: // and abs    [$2d] A1X0
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x22f: // and long   [$2f] A1X0
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x231: // and (dir),Y [$31] A1X0
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x232: // and (dir)  [$32] A1X0
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x233: // and (stk,S),Y [$33] A1X0
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x235: // and dir,x  [$35] A1X0
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x237: // and [dir],y [$37] A1X0
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x239: // and abs,y  [$39] A1X0
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x23d: // and abs,x  [$3d] A1X0
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x23f: // and long,x [$3f] A1X0
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x321: // and (dir,X) [$21] A1X1
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x323: // and stk,S  [$23] A1X1
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x325: // and dir    [$25] A1X1
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x327: // and [dir]  [$27] A1X1
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x329: // and #imm   [$29] A1X1
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x32d: // and abs    [$2d] A1X1
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x32f: // and long   [$2f] A1X1
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x331: // and (dir),Y [$31] A1X1
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x332: // and (dir)  [$32] A1X1
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x333: // and (stk,S),Y [$33] A1X1
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x335: // and dir,x  [$35] A1X1
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x337: // and [dir],y [$37] A1X1
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x339: // and abs,y  [$39] A1X1
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x33d: // and abs,x  [$3d] A1X1
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x33f: // and long,x [$3f] A1X1
-    ;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x041: // eor (dir,X) [$41] A0X0
     ;cpu.A.B.L = cpu.A.B.L ^ CPUReadByte();ALUSetNZ8(cpu.A.B.L);break;
@@ -1157,94 +1157,94 @@ case 0x15f: // eor long,x [$5f] A0X1
     ;cpu.A.B.L = cpu.A.B.L ^ CPUReadByte();ALUSetNZ8(cpu.A.B.L);break;
 
 case 0x241: // eor (dir,X) [$41] A1X0
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x243: // eor stk,S  [$43] A1X0
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x245: // eor dir    [$45] A1X0
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x247: // eor [dir]  [$47] A1X0
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x249: // eor #imm   [$49] A1X0
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x24d: // eor abs    [$4d] A1X0
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x24f: // eor long   [$4f] A1X0
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x251: // eor (dir),Y [$51] A1X0
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x252: // eor (dir)  [$52] A1X0
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x253: // eor (stk,S),Y [$53] A1X0
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x255: // eor dir,x  [$55] A1X0
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x257: // eor [dir],y [$57] A1X0
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x259: // eor abs,y  [$59] A1X0
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x25d: // eor abs,x  [$5d] A1X0
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x25f: // eor long,x [$5f] A1X0
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x341: // eor (dir,X) [$41] A1X1
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x343: // eor stk,S  [$43] A1X1
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x345: // eor dir    [$45] A1X1
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x347: // eor [dir]  [$47] A1X1
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x349: // eor #imm   [$49] A1X1
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x34d: // eor abs    [$4d] A1X1
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x34f: // eor long   [$4f] A1X1
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x351: // eor (dir),Y [$51] A1X1
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x352: // eor (dir)  [$52] A1X1
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x353: // eor (stk,S),Y [$53] A1X1
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x355: // eor dir,x  [$55] A1X1
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x357: // eor [dir],y [$57] A1X1
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x359: // eor abs,y  [$59] A1X1
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x35d: // eor abs,x  [$5d] A1X1
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x35f: // eor long,x [$5f] A1X1
-    ;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x001: // ora (dir,X) [$01] A0X0
     ;cpu.A.B.L = cpu.A.B.L | CPUReadByte();ALUSetNZ8(cpu.A.B.L);break;
@@ -1337,286 +1337,286 @@ case 0x11f: // ora long,x [$1f] A0X1
     ;cpu.A.B.L = cpu.A.B.L | CPUReadByte();ALUSetNZ8(cpu.A.B.L);break;
 
 case 0x201: // ora (dir,X) [$01] A1X0
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x203: // ora stk,S  [$03] A1X0
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x205: // ora dir    [$05] A1X0
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x207: // ora [dir]  [$07] A1X0
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x209: // ora #imm   [$09] A1X0
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x20d: // ora abs    [$0d] A1X0
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x20f: // ora long   [$0f] A1X0
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x211: // ora (dir),Y [$11] A1X0
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x212: // ora (dir)  [$12] A1X0
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x213: // ora (stk,S),Y [$13] A1X0
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x215: // ora dir,x  [$15] A1X0
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x217: // ora [dir],y [$17] A1X0
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x219: // ora abs,y  [$19] A1X0
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x21d: // ora abs,x  [$1d] A1X0
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x21f: // ora long,x [$1f] A1X0
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x301: // ora (dir,X) [$01] A1X1
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x303: // ora stk,S  [$03] A1X1
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x305: // ora dir    [$05] A1X1
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x307: // ora [dir]  [$07] A1X1
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x309: // ora #imm   [$09] A1X1
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x30d: // ora abs    [$0d] A1X1
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x30f: // ora long   [$0f] A1X1
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x311: // ora (dir),Y [$11] A1X1
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x312: // ora (dir)  [$12] A1X1
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x313: // ora (stk,S),Y [$13] A1X1
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x315: // ora dir,x  [$15] A1X1
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x317: // ora [dir],y [$17] A1X1
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x319: // ora abs,y  [$19] A1X1
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x31d: // ora abs,x  [$1d] A1X1
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x31f: // ora long,x [$1f] A1X1
-    ;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A);break;
+    ;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W);break;
 
 case 0x0a2: // ldx #imm   [$a2] A0X0
-    ;cpu.XL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.X.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x0a6: // ldx dir    [$a6] A0X0
-    ;cpu.XL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.X.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x0ae: // ldx abs    [$ae] A0X0
-    ;cpu.XL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.X.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x0b6: // ldx dir,Y  [$b6] A0X0
-    ;cpu.XL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.X.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x0be: // ldx abs,Y  [$be] A0X0
-    ;cpu.XL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.X.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x1a2: // ldx #imm   [$a2] A0X1
-    ;cpu.XL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.X.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x1a6: // ldx dir    [$a6] A0X1
-    ;cpu.XL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.X.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x1ae: // ldx abs    [$ae] A0X1
-    ;cpu.XL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.X.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x1b6: // ldx dir,Y  [$b6] A0X1
-    ;cpu.XL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.X.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x1be: // ldx abs,Y  [$be] A0X1
-    ;cpu.XL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.X.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x2a2: // ldx #imm   [$a2] A1X0
-    ;cpu.X = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.X.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x2a6: // ldx dir    [$a6] A1X0
-    ;cpu.X = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.X.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x2ae: // ldx abs    [$ae] A1X0
-    ;cpu.X = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.X.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x2b6: // ldx dir,Y  [$b6] A1X0
-    ;cpu.X = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.X.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x2be: // ldx abs,Y  [$be] A1X0
-    ;cpu.X = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.X.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x3a2: // ldx #imm   [$a2] A1X1
-    ;cpu.X = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.X.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x3a6: // ldx dir    [$a6] A1X1
-    ;cpu.X = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.X.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x3ae: // ldx abs    [$ae] A1X1
-    ;cpu.X = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.X.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x3b6: // ldx dir,Y  [$b6] A1X1
-    ;cpu.X = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.X.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x3be: // ldx abs,Y  [$be] A1X1
-    ;cpu.X = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.X.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x0a0: // ldy #imm   [$a0] A0X0
-    ;cpu.YL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.Y.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x0a4: // ldy dir    [$a4] A0X0
-    ;cpu.YL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.Y.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x0ac: // ldy abs    [$ac] A0X0
-    ;cpu.YL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.Y.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x0b4: // ldy dir,Y  [$b4] A0X0
-    ;cpu.YL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.Y.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x0bc: // ldy abs,Y  [$bc] A0X0
-    ;cpu.YL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.Y.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x1a0: // ldy #imm   [$a0] A0X1
-    ;cpu.YL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.Y.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x1a4: // ldy dir    [$a4] A0X1
-    ;cpu.YL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.Y.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x1ac: // ldy abs    [$ac] A0X1
-    ;cpu.YL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.Y.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x1b4: // ldy dir,Y  [$b4] A0X1
-    ;cpu.YL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.Y.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x1bc: // ldy abs,Y  [$bc] A0X1
-    ;cpu.YL = CPUReadByte();ALUSetNZ8(cpu.XL);break;
+    ;cpu.Y.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x2a0: // ldy #imm   [$a0] A1X0
-    ;cpu.Y = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.Y.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x2a4: // ldy dir    [$a4] A1X0
-    ;cpu.Y = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.Y.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x2ac: // ldy abs    [$ac] A1X0
-    ;cpu.Y = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.Y.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x2b4: // ldy dir,Y  [$b4] A1X0
-    ;cpu.Y = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.Y.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x2bc: // ldy abs,Y  [$bc] A1X0
-    ;cpu.Y = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.Y.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x3a0: // ldy #imm   [$a0] A1X1
-    ;cpu.Y = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.Y.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x3a4: // ldy dir    [$a4] A1X1
-    ;cpu.Y = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.Y.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x3ac: // ldy abs    [$ac] A1X1
-    ;cpu.Y = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.Y.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x3b4: // ldy dir,Y  [$b4] A1X1
-    ;cpu.Y = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.Y.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x3bc: // ldy abs,Y  [$bc] A1X1
-    ;cpu.Y = CPUReadWord();ALUSetNZ16(cpu.X);break;
+    ;cpu.Y.W = CPUReadWord();ALUSetNZ16(cpu.X.W);break;
 
 case 0x086: // stx dir    [$86] A0X0
-    ;MB8 = cpu.XL;CPUWriteByte();break;
+    ;MB8 = cpu.X.B.L;CPUWriteByte();break;
 
 case 0x08e: // stx abs    [$8e] A0X0
-    ;MB8 = cpu.XL;CPUWriteByte();break;
+    ;MB8 = cpu.X.B.L;CPUWriteByte();break;
 
 case 0x096: // stx dir,X  [$96] A0X0
-    ;MB8 = cpu.XL;CPUWriteByte();break;
+    ;MB8 = cpu.X.B.L;CPUWriteByte();break;
 
 case 0x186: // stx dir    [$86] A0X1
-    ;MB8 = cpu.XL;CPUWriteByte();break;
+    ;MB8 = cpu.X.B.L;CPUWriteByte();break;
 
 case 0x18e: // stx abs    [$8e] A0X1
-    ;MB8 = cpu.XL;CPUWriteByte();break;
+    ;MB8 = cpu.X.B.L;CPUWriteByte();break;
 
 case 0x196: // stx dir,X  [$96] A0X1
-    ;MB8 = cpu.XL;CPUWriteByte();break;
+    ;MB8 = cpu.X.B.L;CPUWriteByte();break;
 
 case 0x286: // stx dir    [$86] A1X0
-    ;MB16 = cpu.X;CPUWriteWord();break;
+    ;MB16 = cpu.X.W;CPUWriteWord();break;
 
 case 0x28e: // stx abs    [$8e] A1X0
-    ;MB16 = cpu.X;CPUWriteWord();break;
+    ;MB16 = cpu.X.W;CPUWriteWord();break;
 
 case 0x296: // stx dir,X  [$96] A1X0
-    ;MB16 = cpu.X;CPUWriteWord();break;
+    ;MB16 = cpu.X.W;CPUWriteWord();break;
 
 case 0x386: // stx dir    [$86] A1X1
-    ;MB16 = cpu.X;CPUWriteWord();break;
+    ;MB16 = cpu.X.W;CPUWriteWord();break;
 
 case 0x38e: // stx abs    [$8e] A1X1
-    ;MB16 = cpu.X;CPUWriteWord();break;
+    ;MB16 = cpu.X.W;CPUWriteWord();break;
 
 case 0x396: // stx dir,X  [$96] A1X1
-    ;MB16 = cpu.X;CPUWriteWord();break;
+    ;MB16 = cpu.X.W;CPUWriteWord();break;
 
 case 0x084: // sty dir    [$84] A0X0
-    ;MB8 = cpu.YL;CPUWriteByte();break;
+    ;MB8 = cpu.Y.B.L;CPUWriteByte();break;
 
 case 0x08c: // sty abs    [$8c] A0X0
-    ;MB8 = cpu.YL;CPUWriteByte();break;
+    ;MB8 = cpu.Y.B.L;CPUWriteByte();break;
 
 case 0x094: // sty dir,X  [$94] A0X0
-    ;MB8 = cpu.YL;CPUWriteByte();break;
+    ;MB8 = cpu.Y.B.L;CPUWriteByte();break;
 
 case 0x184: // sty dir    [$84] A0X1
-    ;MB8 = cpu.YL;CPUWriteByte();break;
+    ;MB8 = cpu.Y.B.L;CPUWriteByte();break;
 
 case 0x18c: // sty abs    [$8c] A0X1
-    ;MB8 = cpu.YL;CPUWriteByte();break;
+    ;MB8 = cpu.Y.B.L;CPUWriteByte();break;
 
 case 0x194: // sty dir,X  [$94] A0X1
-    ;MB8 = cpu.YL;CPUWriteByte();break;
+    ;MB8 = cpu.Y.B.L;CPUWriteByte();break;
 
 case 0x284: // sty dir    [$84] A1X0
-    ;MB16 = cpu.Y;CPUWriteWord();break;
+    ;MB16 = cpu.Y.W;CPUWriteWord();break;
 
 case 0x28c: // sty abs    [$8c] A1X0
-    ;MB16 = cpu.Y;CPUWriteWord();break;
+    ;MB16 = cpu.Y.W;CPUWriteWord();break;
 
 case 0x294: // sty dir,X  [$94] A1X0
-    ;MB16 = cpu.Y;CPUWriteWord();break;
+    ;MB16 = cpu.Y.W;CPUWriteWord();break;
 
 case 0x384: // sty dir    [$84] A1X1
-    ;MB16 = cpu.Y;CPUWriteWord();break;
+    ;MB16 = cpu.Y.W;CPUWriteWord();break;
 
 case 0x38c: // sty abs    [$8c] A1X1
-    ;MB16 = cpu.Y;CPUWriteWord();break;
+    ;MB16 = cpu.Y.W;CPUWriteWord();break;
 
 case 0x394: // sty dir,X  [$94] A1X1
-    ;MB16 = cpu.Y;CPUWriteWord();break;
+    ;MB16 = cpu.Y.W;CPUWriteWord();break;
 
 case 0x064: // stz dir    [$64] A0X0
     ;MB8 = 0;CPUWriteByte();break;
@@ -1667,76 +1667,76 @@ case 0x39e: // stz abs,X  [$9e] A1X1
     ;MB16 = 0;CPUWriteWord();break;
 
 case 0x0e0: // cpx #imm   [$e0] A0X0
-    ;ALUSbc8(cpu.XL,CPUReadByte(),1);break;
+    ;ALUSbc8(cpu.X.B.L,CPUReadByte(),1);break;
 
 case 0x0e4: // cpx dir    [$e4] A0X0
-    ;ALUSbc8(cpu.XL,CPUReadByte(),1);break;
+    ;ALUSbc8(cpu.X.B.L,CPUReadByte(),1);break;
 
 case 0x0ec: // cpx abs    [$ec] A0X0
-    ;ALUSbc8(cpu.XL,CPUReadByte(),1);break;
+    ;ALUSbc8(cpu.X.B.L,CPUReadByte(),1);break;
 
 case 0x1e0: // cpx #imm   [$e0] A0X1
-    ;ALUSbc8(cpu.XL,CPUReadByte(),1);break;
+    ;ALUSbc8(cpu.X.B.L,CPUReadByte(),1);break;
 
 case 0x1e4: // cpx dir    [$e4] A0X1
-    ;ALUSbc8(cpu.XL,CPUReadByte(),1);break;
+    ;ALUSbc8(cpu.X.B.L,CPUReadByte(),1);break;
 
 case 0x1ec: // cpx abs    [$ec] A0X1
-    ;ALUSbc8(cpu.XL,CPUReadByte(),1);break;
+    ;ALUSbc8(cpu.X.B.L,CPUReadByte(),1);break;
 
 case 0x2e0: // cpx #imm   [$e0] A1X0
-    ;ALUSbc16(cpu.X,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.X.W,CPUReadWord(),1);break;
 
 case 0x2e4: // cpx dir    [$e4] A1X0
-    ;ALUSbc16(cpu.X,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.X.W,CPUReadWord(),1);break;
 
 case 0x2ec: // cpx abs    [$ec] A1X0
-    ;ALUSbc16(cpu.X,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.X.W,CPUReadWord(),1);break;
 
 case 0x3e0: // cpx #imm   [$e0] A1X1
-    ;ALUSbc16(cpu.X,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.X.W,CPUReadWord(),1);break;
 
 case 0x3e4: // cpx dir    [$e4] A1X1
-    ;ALUSbc16(cpu.X,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.X.W,CPUReadWord(),1);break;
 
 case 0x3ec: // cpx abs    [$ec] A1X1
-    ;ALUSbc16(cpu.X,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.X.W,CPUReadWord(),1);break;
 
 case 0x0c0: // cpy #imm   [$c0] A0X0
-    ;ALUSbc8(cpu.YL,CPUReadByte(),1);break;
+    ;ALUSbc8(cpu.Y.B.L,CPUReadByte(),1);break;
 
 case 0x0c4: // cpy dir    [$c4] A0X0
-    ;ALUSbc8(cpu.YL,CPUReadByte(),1);break;
+    ;ALUSbc8(cpu.Y.B.L,CPUReadByte(),1);break;
 
 case 0x0cc: // cpy abs    [$cc] A0X0
-    ;ALUSbc8(cpu.YL,CPUReadByte(),1);break;
+    ;ALUSbc8(cpu.Y.B.L,CPUReadByte(),1);break;
 
 case 0x1c0: // cpy #imm   [$c0] A0X1
-    ;ALUSbc8(cpu.YL,CPUReadByte(),1);break;
+    ;ALUSbc8(cpu.Y.B.L,CPUReadByte(),1);break;
 
 case 0x1c4: // cpy dir    [$c4] A0X1
-    ;ALUSbc8(cpu.YL,CPUReadByte(),1);break;
+    ;ALUSbc8(cpu.Y.B.L,CPUReadByte(),1);break;
 
 case 0x1cc: // cpy abs    [$cc] A0X1
-    ;ALUSbc8(cpu.YL,CPUReadByte(),1);break;
+    ;ALUSbc8(cpu.Y.B.L,CPUReadByte(),1);break;
 
 case 0x2c0: // cpy #imm   [$c0] A1X0
-    ;ALUSbc16(cpu.Y,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.Y.W,CPUReadWord(),1);break;
 
 case 0x2c4: // cpy dir    [$c4] A1X0
-    ;ALUSbc16(cpu.Y,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.Y.W,CPUReadWord(),1);break;
 
 case 0x2cc: // cpy abs    [$cc] A1X0
-    ;ALUSbc16(cpu.Y,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.Y.W,CPUReadWord(),1);break;
 
 case 0x3c0: // cpy #imm   [$c0] A1X1
-    ;ALUSbc16(cpu.Y,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.Y.W,CPUReadWord(),1);break;
 
 case 0x3c4: // cpy dir    [$c4] A1X1
-    ;ALUSbc16(cpu.Y,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.Y.W,CPUReadWord(),1);break;
 
 case 0x3cc: // cpy abs    [$cc] A1X1
-    ;ALUSbc16(cpu.Y,CPUReadWord(),1);break;
+    ;ALUSbc16(cpu.Y.W,CPUReadWord(),1);break;
 
 case 0x0c6: // dec dir    [$c6] A0X0
     ;CPUReadByte();MB8--;CPUWriteByte();ALUSetNZ8(MB8);break;
@@ -1793,34 +1793,34 @@ case 0x13a: // dec        [$3a] A0X1
     cpu.A.B.L--;ALUSetNZ8(cpu.A.B.L);break;
 
 case 0x23a: // dec        [$3a] A1X0
-    cpu.A--;ALUSetNZ16(cpu.A);break;
+    cpu.A.W--;ALUSetNZ16(cpu.A.W);break;
 
 case 0x33a: // dec        [$3a] A1X1
-    cpu.A--;ALUSetNZ16(cpu.A);break;
+    cpu.A.W--;ALUSetNZ16(cpu.A.W);break;
 
 case 0x0ca: // dex        [$ca] A0X0
-    cpu.XL--;ALUSetNZ8(cpu.XL);break;
+    cpu.X.B.L--;ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x1ca: // dex        [$ca] A0X1
-    cpu.XL--;ALUSetNZ8(cpu.XL);break;
+    cpu.X.B.L--;ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x2ca: // dex        [$ca] A1X0
-    cpu.X--;ALUSetNZ16(cpu.X);break;
+    cpu.X.W--;ALUSetNZ16(cpu.X.W);break;
 
 case 0x3ca: // dex        [$ca] A1X1
-    cpu.X--;ALUSetNZ16(cpu.X);break;
+    cpu.X.W--;ALUSetNZ16(cpu.X.W);break;
 
 case 0x088: // dey        [$88] A0X0
-    cpu.YL--;ALUSetNZ8(cpu.YL);break;
+    cpu.Y.B.L--;ALUSetNZ8(cpu.Y.B.L);break;
 
 case 0x188: // dey        [$88] A0X1
-    cpu.YL--;ALUSetNZ8(cpu.YL);break;
+    cpu.Y.B.L--;ALUSetNZ8(cpu.Y.B.L);break;
 
 case 0x288: // dey        [$88] A1X0
-    cpu.Y--;ALUSetNZ16(cpu.Y);break;
+    cpu.Y.W--;ALUSetNZ16(cpu.Y.W);break;
 
 case 0x388: // dey        [$88] A1X1
-    cpu.Y--;ALUSetNZ16(cpu.Y);break;
+    cpu.Y.W--;ALUSetNZ16(cpu.Y.W);break;
 
 case 0x0e6: // inc dir    [$e6] A0X0
     ;CPUReadByte();MB8++;CPUWriteByte();ALUSetNZ8(MB8);break;
@@ -1877,34 +1877,34 @@ case 0x11a: // inc        [$1a] A0X1
     cpu.A.B.L++;ALUSetNZ8(cpu.A.B.L);break;
 
 case 0x21a: // inc        [$1a] A1X0
-    cpu.A++;ALUSetNZ16(cpu.A);break;
+    cpu.A.W++;ALUSetNZ16(cpu.A.W);break;
 
 case 0x31a: // inc        [$1a] A1X1
-    cpu.A++;ALUSetNZ16(cpu.A);break;
+    cpu.A.W++;ALUSetNZ16(cpu.A.W);break;
 
 case 0x0e8: // inx        [$e8] A0X0
-    cpu.XL++;ALUSetNZ8(cpu.XL);break;
+    cpu.X.B.L++;ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x1e8: // inx        [$e8] A0X1
-    cpu.XL++;ALUSetNZ8(cpu.XL);break;
+    cpu.X.B.L++;ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x2e8: // inx        [$e8] A1X0
-    cpu.X++;ALUSetNZ16(cpu.X);break;
+    cpu.X.W++;ALUSetNZ16(cpu.X.W);break;
 
 case 0x3e8: // inx        [$e8] A1X1
-    cpu.X++;ALUSetNZ16(cpu.X);break;
+    cpu.X.W++;ALUSetNZ16(cpu.X.W);break;
 
 case 0x0c8: // iny        [$c8] A0X0
-    cpu.YL++;ALUSetNZ8(cpu.YL);break;
+    cpu.Y.B.L++;ALUSetNZ8(cpu.Y.B.L);break;
 
 case 0x1c8: // iny        [$c8] A0X1
-    cpu.YL++;ALUSetNZ8(cpu.YL);break;
+    cpu.Y.B.L++;ALUSetNZ8(cpu.Y.B.L);break;
 
 case 0x2c8: // iny        [$c8] A1X0
-    cpu.Y++;ALUSetNZ16(cpu.Y);break;
+    cpu.Y.W++;ALUSetNZ16(cpu.Y.W);break;
 
 case 0x3c8: // iny        [$c8] A1X1
-    cpu.Y++;ALUSetNZ16(cpu.Y);break;
+    cpu.Y.W++;ALUSetNZ16(cpu.Y.W);break;
 
 case 0x024: // bit dir    [$24] A0X0
     ;ALUBitTest8(CPUReadByte(),cpu.A.B.L);break;
@@ -1931,28 +1931,28 @@ case 0x13c: // bit abs,x  [$3c] A0X1
     ;ALUBitTest8(CPUReadByte(),cpu.A.B.L);break;
 
 case 0x224: // bit dir    [$24] A1X0
-    ;ALUBitTest16(CPUReadWord(),cpu.A);break;
+    ;ALUBitTest16(CPUReadWord(),cpu.A.W);break;
 
 case 0x22c: // bit abs    [$2c] A1X0
-    ;ALUBitTest16(CPUReadWord(),cpu.A);break;
+    ;ALUBitTest16(CPUReadWord(),cpu.A.W);break;
 
 case 0x234: // bit dir,x  [$34] A1X0
-    ;ALUBitTest16(CPUReadWord(),cpu.A);break;
+    ;ALUBitTest16(CPUReadWord(),cpu.A.W);break;
 
 case 0x23c: // bit abs,x  [$3c] A1X0
-    ;ALUBitTest16(CPUReadWord(),cpu.A);break;
+    ;ALUBitTest16(CPUReadWord(),cpu.A.W);break;
 
 case 0x324: // bit dir    [$24] A1X1
-    ;ALUBitTest16(CPUReadWord(),cpu.A);break;
+    ;ALUBitTest16(CPUReadWord(),cpu.A.W);break;
 
 case 0x32c: // bit abs    [$2c] A1X1
-    ;ALUBitTest16(CPUReadWord(),cpu.A);break;
+    ;ALUBitTest16(CPUReadWord(),cpu.A.W);break;
 
 case 0x334: // bit dir,x  [$34] A1X1
-    ;ALUBitTest16(CPUReadWord(),cpu.A);break;
+    ;ALUBitTest16(CPUReadWord(),cpu.A.W);break;
 
 case 0x33c: // bit abs,x  [$3c] A1X1
-    ;ALUBitTest16(CPUReadWord(),cpu.A);break;
+    ;ALUBitTest16(CPUReadWord(),cpu.A.W);break;
 
 case 0x089: // bit #imm8  [$89] A0X0
     ;ALUSetZ8(CPUReadByte() & cpu.A.B.L);break;
@@ -1961,10 +1961,10 @@ case 0x189: // bit #imm8  [$89] A0X1
     ;ALUSetZ8(CPUReadByte() & cpu.A.B.L);break;
 
 case 0x289: // bit #imm8  [$89] A1X0
-    ;ALUSetZ16(CPUReadWord() & cpu.A);break;
+    ;ALUSetZ16(CPUReadWord() & cpu.A.W);break;
 
 case 0x389: // bit #imm8  [$89] A1X1
-    ;ALUSetZ16(CPUReadWord() & cpu.A);break;
+    ;ALUSetZ16(CPUReadWord() & cpu.A.W);break;
 
 case 0x014: // trb dir    [$14] A0X0
     ;CPUReadByte();ALUSetZ8(MB8 & cpu.A.B.L);MB8 &= (cpu.A.B.L ^ 0xFF);CPUWriteByte();break;
@@ -1979,16 +1979,16 @@ case 0x11c: // trb abs    [$1c] A0X1
     ;CPUReadByte();ALUSetZ8(MB8 & cpu.A.B.L);MB8 &= (cpu.A.B.L ^ 0xFF);CPUWriteByte();break;
 
 case 0x214: // trb dir    [$14] A1X0
-    ;CPUReadWord();ALUSetZ16(MB16 & cpu.A);MB16 &= (cpu.A ^ 0xFFFF);CPUWriteWord();break;
+    ;CPUReadWord();ALUSetZ16(MB16 & cpu.A.W);MB16 &= (cpu.A.W ^ 0xFFFF);CPUWriteWord();break;
 
 case 0x21c: // trb abs    [$1c] A1X0
-    ;CPUReadWord();ALUSetZ16(MB16 & cpu.A);MB16 &= (cpu.A ^ 0xFFFF);CPUWriteWord();break;
+    ;CPUReadWord();ALUSetZ16(MB16 & cpu.A.W);MB16 &= (cpu.A.W ^ 0xFFFF);CPUWriteWord();break;
 
 case 0x314: // trb dir    [$14] A1X1
-    ;CPUReadWord();ALUSetZ16(MB16 & cpu.A);MB16 &= (cpu.A ^ 0xFFFF);CPUWriteWord();break;
+    ;CPUReadWord();ALUSetZ16(MB16 & cpu.A.W);MB16 &= (cpu.A.W ^ 0xFFFF);CPUWriteWord();break;
 
 case 0x31c: // trb abs    [$1c] A1X1
-    ;CPUReadWord();ALUSetZ16(MB16 & cpu.A);MB16 &= (cpu.A ^ 0xFFFF);CPUWriteWord();break;
+    ;CPUReadWord();ALUSetZ16(MB16 & cpu.A.W);MB16 &= (cpu.A.W ^ 0xFFFF);CPUWriteWord();break;
 
 case 0x004: // tsb dir    [$04] A0X0
     ;CPUReadByte();ALUSetZ8(MB8 & cpu.A.B.L);MB8 |= cpu.A.B.L;CPUWriteByte();break;
@@ -2003,16 +2003,16 @@ case 0x10c: // tsb abs    [$0c] A0X1
     ;CPUReadByte();ALUSetZ8(MB8 & cpu.A.B.L);MB8 |= cpu.A.B.L;CPUWriteByte();break;
 
 case 0x204: // tsb dir    [$04] A1X0
-    ;CPUReadWord();ALUSetZ16(MB16 & cpu.A);MB16 |= cpu.A;CPUWriteWord();break;
+    ;CPUReadWord();ALUSetZ16(MB16 & cpu.A.W);MB16 |= cpu.A.W;CPUWriteWord();break;
 
 case 0x20c: // tsb abs    [$0c] A1X0
-    ;CPUReadWord();ALUSetZ16(MB16 & cpu.A);MB16 |= cpu.A;CPUWriteWord();break;
+    ;CPUReadWord();ALUSetZ16(MB16 & cpu.A.W);MB16 |= cpu.A.W;CPUWriteWord();break;
 
 case 0x304: // tsb dir    [$04] A1X1
-    ;CPUReadWord();ALUSetZ16(MB16 & cpu.A);MB16 |= cpu.A;CPUWriteWord();break;
+    ;CPUReadWord();ALUSetZ16(MB16 & cpu.A.W);MB16 |= cpu.A.W;CPUWriteWord();break;
 
 case 0x30c: // tsb abs    [$0c] A1X1
-    ;CPUReadWord();ALUSetZ16(MB16 & cpu.A);MB16 |= cpu.A;CPUWriteWord();break;
+    ;CPUReadWord();ALUSetZ16(MB16 & cpu.A.W);MB16 |= cpu.A.W;CPUWriteWord();break;
 
 case 0x006: // asl dir    [$06] A0X0
     ;CPUReadByte();ALUAsl8(&MB8);CPUWriteByte();break;
@@ -2069,10 +2069,10 @@ case 0x10a: // asl a      [$0a] A0X1
     ALUAsl8(&cpu.A.B.L);break;
 
 case 0x20a: // asl a      [$0a] A1X0
-    ALUAsl16(&cpu.A);break;
+    ALUAsl16(&cpu.A.W);break;
 
 case 0x30a: // asl a      [$0a] A1X1
-    ALUAsl16(&cpu.A);break;
+    ALUAsl16(&cpu.A.W);break;
 
 case 0x046: // lsr dir    [$46] A0X0
     ;CPUReadByte();ALULsr8(&MB8);CPUWriteByte();break;
@@ -2129,10 +2129,10 @@ case 0x14a: // lsr a      [$4a] A0X1
     ALULsr8(&cpu.A.B.L);break;
 
 case 0x24a: // lsr a      [$4a] A1X0
-    ALULsr16(&cpu.A);break;
+    ALULsr16(&cpu.A.W);break;
 
 case 0x34a: // lsr a      [$4a] A1X1
-    ALULsr16(&cpu.A);break;
+    ALULsr16(&cpu.A.W);break;
 
 case 0x026: // rol dir    [$26] A0X0
     ;CPUReadByte();ALURol8(&MB8);CPUWriteByte();break;
@@ -2189,10 +2189,10 @@ case 0x12a: // rol a      [$2a] A0X1
     ALURol8(&cpu.A.B.L);break;
 
 case 0x22a: // rol a      [$2a] A1X0
-    ALURol16(&cpu.A);break;
+    ALURol16(&cpu.A.W);break;
 
 case 0x32a: // rol a      [$2a] A1X1
-    ALURol16(&cpu.A);break;
+    ALURol16(&cpu.A.W);break;
 
 case 0x066: // ror dir    [$66] A0X0
     ;CPUReadByte();ALURor8(&MB8);CPUWriteByte();break;
@@ -2249,10 +2249,10 @@ case 0x16a: // ror a      [$6a] A0X1
     ALURor8(&cpu.A.B.L);break;
 
 case 0x26a: // ror a      [$6a] A1X0
-    ALURor16(&cpu.A);break;
+    ALURor16(&cpu.A.W);break;
 
 case 0x36a: // ror a      [$6a] A1X1
-    ALURor16(&cpu.A);break;
+    ALURor16(&cpu.A.W);break;
 
 case 0x090: // bcc rel8   [$90] A0X0
     ;if (cpu.P.C == 0) cpu.PC = MA;break;
@@ -2705,34 +2705,34 @@ case 0x148: // pha        [$48] A0X1
     CPUPush8(cpu.A.B.L);break;
 
 case 0x248: // pha        [$48] A1X0
-    CPUPush16(cpu.A);break;
+    CPUPush16(cpu.A.W);break;
 
 case 0x348: // pha        [$48] A1X1
-    CPUPush16(cpu.A);break;
+    CPUPush16(cpu.A.W);break;
 
 case 0x0da: // phx        [$da] A0X0
-    CPUPush8(cpu.XL);break;
+    CPUPush8(cpu.X.B.L);break;
 
 case 0x1da: // phx        [$da] A0X1
-    CPUPush8(cpu.XL);break;
+    CPUPush8(cpu.X.B.L);break;
 
 case 0x2da: // phx        [$da] A1X0
-    CPUPush16(cpu.X);break;
+    CPUPush16(cpu.X.W);break;
 
 case 0x3da: // phx        [$da] A1X1
-    CPUPush16(cpu.X);break;
+    CPUPush16(cpu.X.W);break;
 
 case 0x05a: // phy        [$5a] A0X0
-    CPUPush8(cpu.YL);break;
+    CPUPush8(cpu.Y.B.L);break;
 
 case 0x15a: // phy        [$5a] A0X1
-    CPUPush8(cpu.YL);break;
+    CPUPush8(cpu.Y.B.L);break;
 
 case 0x25a: // phy        [$5a] A1X0
-    CPUPush16(cpu.Y);break;
+    CPUPush16(cpu.Y.W);break;
 
 case 0x35a: // phy        [$5a] A1X1
-    CPUPush16(cpu.Y);break;
+    CPUPush16(cpu.Y.W);break;
 
 case 0x068: // pla        [$68] A0X0
     cpu.A.B.L = CPUPop8();ALUSetNZ8(cpu.A.B.L);break;
@@ -2741,34 +2741,34 @@ case 0x168: // pla        [$68] A0X1
     cpu.A.B.L = CPUPop8();ALUSetNZ8(cpu.A.B.L);break;
 
 case 0x268: // pla        [$68] A1X0
-    cpu.A = CPUPop16();ALUSetNZ16(cpu.A);break;
+    cpu.A.W = CPUPop16();ALUSetNZ16(cpu.A.W);break;
 
 case 0x368: // pla        [$68] A1X1
-    cpu.A = CPUPop16();ALUSetNZ16(cpu.A);break;
+    cpu.A.W = CPUPop16();ALUSetNZ16(cpu.A.W);break;
 
 case 0x0fa: // plx        [$fa] A0X0
-    cpu.XL = CPUPop8();ALUSetNZ8(cpu.XL);break;
+    cpu.X.B.L = CPUPop8();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x1fa: // plx        [$fa] A0X1
-    cpu.XL = CPUPop8();ALUSetNZ8(cpu.XL);break;
+    cpu.X.B.L = CPUPop8();ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x2fa: // plx        [$fa] A1X0
-    cpu.X = CPUPop16();ALUSetNZ16(cpu.X);break;
+    cpu.X.W = CPUPop16();ALUSetNZ16(cpu.X.W);break;
 
 case 0x3fa: // plx        [$fa] A1X1
-    cpu.X = CPUPop16();ALUSetNZ16(cpu.X);break;
+    cpu.X.W = CPUPop16();ALUSetNZ16(cpu.X.W);break;
 
 case 0x07a: // ply        [$7a] A0X0
-    cpu.YL = CPUPop8();ALUSetNZ8(cpu.YL);break;
+    cpu.Y.B.L = CPUPop8();ALUSetNZ8(cpu.Y.B.L);break;
 
 case 0x17a: // ply        [$7a] A0X1
-    cpu.YL = CPUPop8();ALUSetNZ8(cpu.YL);break;
+    cpu.Y.B.L = CPUPop8();ALUSetNZ8(cpu.Y.B.L);break;
 
 case 0x27a: // ply        [$7a] A1X0
-    cpu.Y = CPUPop16();ALUSetNZ16(cpu.Y);break;
+    cpu.Y.W = CPUPop16();ALUSetNZ16(cpu.Y.W);break;
 
 case 0x37a: // ply        [$7a] A1X1
-    cpu.Y = CPUPop16();ALUSetNZ16(cpu.Y);break;
+    cpu.Y.W = CPUPop16();ALUSetNZ16(cpu.Y.W);break;
 
 case 0x04b: // phk        [$4b] A0X0
     CPUPush8(cpu.PC >> 16);break;
@@ -2855,148 +2855,148 @@ case 0x32b: // pld        [$2b] A1X1
     cpu.D = CPUPop16();ALUSetNZ16(cpu.D);break;
 
 case 0x0aa: // tax        [$aa] A0X0
-    cpu.XL = cpu.A.B.L;ALUSetNZ8(cpu.XL);break;
+    cpu.X.B.L = cpu.A.B.L;ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x1aa: // tax        [$aa] A0X1
-    cpu.XL = cpu.A.B.L;ALUSetNZ8(cpu.XL);break;
+    cpu.X.B.L = cpu.A.B.L;ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x2aa: // tax        [$aa] A1X0
-    cpu.X = cpu.A;ALUSetNZ16(cpu.X);break;
+    cpu.X.W = cpu.A.W;ALUSetNZ16(cpu.X.W);break;
 
 case 0x3aa: // tax        [$aa] A1X1
-    cpu.X = cpu.A;ALUSetNZ16(cpu.X);break;
+    cpu.X.W = cpu.A.W;ALUSetNZ16(cpu.X.W);break;
 
 case 0x0a8: // tay        [$a8] A0X0
-    cpu.YL = cpu.A.B.L;ALUSetNZ8(cpu.YL);break;
+    cpu.Y.B.L = cpu.A.B.L;ALUSetNZ8(cpu.Y.B.L);break;
 
 case 0x1a8: // tay        [$a8] A0X1
-    cpu.YL = cpu.A.B.L;ALUSetNZ8(cpu.YL);break;
+    cpu.Y.B.L = cpu.A.B.L;ALUSetNZ8(cpu.Y.B.L);break;
 
 case 0x2a8: // tay        [$a8] A1X0
-    cpu.Y = cpu.A;ALUSetNZ16(cpu.Y);break;
+    cpu.Y.W = cpu.A.W;ALUSetNZ16(cpu.Y.W);break;
 
 case 0x3a8: // tay        [$a8] A1X1
-    cpu.Y = cpu.A;ALUSetNZ16(cpu.Y);break;
+    cpu.Y.W = cpu.A.W;ALUSetNZ16(cpu.Y.W);break;
 
 case 0x0bb: // tyx        [$bb] A0X0
-    cpu.XL = cpu.YL;ALUSetNZ8(cpu.XL);break;
+    cpu.X.B.L = cpu.Y.B.L;ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x1bb: // tyx        [$bb] A0X1
-    cpu.XL = cpu.YL;ALUSetNZ8(cpu.XL);break;
+    cpu.X.B.L = cpu.Y.B.L;ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x2bb: // tyx        [$bb] A1X0
-    cpu.X = cpu.Y;ALUSetNZ16(cpu.X);break;
+    cpu.X.W = cpu.Y.W;ALUSetNZ16(cpu.X.W);break;
 
 case 0x3bb: // tyx        [$bb] A1X1
-    cpu.X = cpu.Y;ALUSetNZ16(cpu.X);break;
+    cpu.X.W = cpu.Y.W;ALUSetNZ16(cpu.X.W);break;
 
 case 0x09b: // txy        [$9b] A0X0
-    cpu.YL = cpu.XL;ALUSetNZ8(cpu.YL);break;
+    cpu.Y.B.L = cpu.X.B.L;ALUSetNZ8(cpu.Y.B.L);break;
 
 case 0x19b: // txy        [$9b] A0X1
-    cpu.YL = cpu.XL;ALUSetNZ8(cpu.YL);break;
+    cpu.Y.B.L = cpu.X.B.L;ALUSetNZ8(cpu.Y.B.L);break;
 
 case 0x29b: // txy        [$9b] A1X0
-    cpu.Y = cpu.X;ALUSetNZ16(cpu.Y);break;
+    cpu.Y.W = cpu.X.W;ALUSetNZ16(cpu.Y.W);break;
 
 case 0x39b: // txy        [$9b] A1X1
-    cpu.Y = cpu.X;ALUSetNZ16(cpu.Y);break;
+    cpu.Y.W = cpu.X.W;ALUSetNZ16(cpu.Y.W);break;
 
 case 0x08a: // txa        [$8a] A0X0
-    cpu.A.B.L = cpu.XL;ALUSetNZ8(cpu.A.B.L);break;
+    cpu.A.B.L = cpu.X.B.L;ALUSetNZ8(cpu.A.B.L);break;
 
 case 0x18a: // txa        [$8a] A0X1
-    cpu.A.B.L = cpu.XL;ALUSetNZ8(cpu.A.B.L);break;
+    cpu.A.B.L = cpu.X.B.L;ALUSetNZ8(cpu.A.B.L);break;
 
 case 0x28a: // txa        [$8a] A1X0
-    cpu.A = cpu.X;ALUSetNZ16(cpu.A);break;
+    cpu.A.W = cpu.X.W;ALUSetNZ16(cpu.A.W);break;
 
 case 0x38a: // txa        [$8a] A1X1
-    cpu.A = cpu.X;ALUSetNZ16(cpu.A);break;
+    cpu.A.W = cpu.X.W;ALUSetNZ16(cpu.A.W);break;
 
 case 0x098: // tya        [$98] A0X0
-    cpu.A.B.L = cpu.YL;ALUSetNZ8(cpu.A.B.L);break;
+    cpu.A.B.L = cpu.Y.B.L;ALUSetNZ8(cpu.A.B.L);break;
 
 case 0x198: // tya        [$98] A0X1
-    cpu.A.B.L = cpu.YL;ALUSetNZ8(cpu.A.B.L);break;
+    cpu.A.B.L = cpu.Y.B.L;ALUSetNZ8(cpu.A.B.L);break;
 
 case 0x298: // tya        [$98] A1X0
-    cpu.A = cpu.Y;ALUSetNZ16(cpu.A);break;
+    cpu.A.W = cpu.Y.W;ALUSetNZ16(cpu.A.W);break;
 
 case 0x398: // tya        [$98] A1X1
-    cpu.A = cpu.Y;ALUSetNZ16(cpu.A);break;
+    cpu.A.W = cpu.Y.W;ALUSetNZ16(cpu.A.W);break;
 
 case 0x0ba: // tsx        [$ba] A0X0
-    cpu.XL = cpu.S & 0xFF;ALUSetNZ8(cpu.XL);break;
+    cpu.X.B.L = cpu.S & 0xFF;ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x1ba: // tsx        [$ba] A0X1
-    cpu.XL = cpu.S & 0xFF;ALUSetNZ8(cpu.XL);break;
+    cpu.X.B.L = cpu.S & 0xFF;ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x2ba: // tsx        [$ba] A1X0
-    cpu.X = cpu.S;ALUSetNZ16(cpu.X);break;
+    cpu.X.W = cpu.S;ALUSetNZ16(cpu.X.W);break;
 
 case 0x3ba: // tsx        [$ba] A1X1
-    cpu.X = cpu.S;ALUSetNZ16(cpu.X);break;
+    cpu.X.W = cpu.S;ALUSetNZ16(cpu.X.W);break;
 
 case 0x09a: // txs        [$9a] A0X0
-    cpu.S = cpu.XL;ALUSetNZ8(cpu.XL);break;
+    cpu.S = cpu.X.B.L;ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x19a: // txs        [$9a] A0X1
-    cpu.S = cpu.XL;ALUSetNZ8(cpu.XL);break;
+    cpu.S = cpu.X.B.L;ALUSetNZ8(cpu.X.B.L);break;
 
 case 0x29a: // txs        [$9a] A1X0
-    cpu.S = cpu.X;break;
+    cpu.S = cpu.X.W;break;
 
 case 0x39a: // txs        [$9a] A1X1
-    cpu.S = cpu.X;break;
+    cpu.S = cpu.X.W;break;
 
 case 0x05b: // tcd        [$5b] A0X0
-    cpu.D = cpu.A;ALUSetNZ16(cpu.D);break;
+    cpu.D = cpu.A.W;ALUSetNZ16(cpu.D);break;
 
 case 0x15b: // tcd        [$5b] A0X1
-    cpu.D = cpu.A;ALUSetNZ16(cpu.D);break;
+    cpu.D = cpu.A.W;ALUSetNZ16(cpu.D);break;
 
 case 0x25b: // tcd        [$5b] A1X0
-    cpu.D = cpu.A;ALUSetNZ16(cpu.D);break;
+    cpu.D = cpu.A.W;ALUSetNZ16(cpu.D);break;
 
 case 0x35b: // tcd        [$5b] A1X1
-    cpu.D = cpu.A;ALUSetNZ16(cpu.D);break;
+    cpu.D = cpu.A.W;ALUSetNZ16(cpu.D);break;
 
 case 0x01b: // tcs        [$1b] A0X0
-    cpu.S = cpu.A;break;
+    cpu.S = cpu.A.W;break;
 
 case 0x11b: // tcs        [$1b] A0X1
-    cpu.S = cpu.A;break;
+    cpu.S = cpu.A.W;break;
 
 case 0x21b: // tcs        [$1b] A1X0
-    cpu.S = cpu.A;break;
+    cpu.S = cpu.A.W;break;
 
 case 0x31b: // tcs        [$1b] A1X1
-    cpu.S = cpu.A;break;
+    cpu.S = cpu.A.W;break;
 
 case 0x07b: // tdc        [$7b] A0X0
-    cpu.A = cpu.D;ALUSetNZ16(cpu.A);break;
+    cpu.A.W = cpu.D;ALUSetNZ16(cpu.A.W);break;
 
 case 0x17b: // tdc        [$7b] A0X1
-    cpu.A = cpu.D;ALUSetNZ16(cpu.A);break;
+    cpu.A.W = cpu.D;ALUSetNZ16(cpu.A.W);break;
 
 case 0x27b: // tdc        [$7b] A1X0
-    cpu.A = cpu.D;ALUSetNZ16(cpu.A);break;
+    cpu.A.W = cpu.D;ALUSetNZ16(cpu.A.W);break;
 
 case 0x37b: // tdc        [$7b] A1X1
-    cpu.A = cpu.D;ALUSetNZ16(cpu.A);break;
+    cpu.A.W = cpu.D;ALUSetNZ16(cpu.A.W);break;
 
 case 0x03b: // tsc        [$3b] A0X0
-    cpu.A = cpu.S;ALUSetNZ16(cpu.A);break;
+    cpu.A.W = cpu.S;ALUSetNZ16(cpu.A.W);break;
 
 case 0x13b: // tsc        [$3b] A0X1
-    cpu.A = cpu.S;ALUSetNZ16(cpu.A);break;
+    cpu.A.W = cpu.S;ALUSetNZ16(cpu.A.W);break;
 
 case 0x23b: // tsc        [$3b] A1X0
-    cpu.A = cpu.S;ALUSetNZ16(cpu.A);break;
+    cpu.A.W = cpu.S;ALUSetNZ16(cpu.A.W);break;
 
 case 0x33b: // tsc        [$3b] A1X1
-    cpu.A = cpu.S;ALUSetNZ16(cpu.A);break;
+    cpu.A.W = cpu.S;ALUSetNZ16(cpu.A.W);break;
 
 case 0x0eb: // xba        [$eb] A0X0
     MB8 = cpu.A.B.L;cpu.A.B.L = cpu.A.B.H;cpu.A.B.H = MB8;ALUSetNZ8(cpu.A.B.L);break;

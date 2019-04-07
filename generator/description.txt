@@ -25,58 +25,58 @@
 Group: (dir,X):1 stk,S:3 dir:5 [dir]:7 #imm:9 abs:D long:F (dir),Y:11 (dir):12 (stk,S),Y:13 dir,x:15 [dir],y:17 abs,y:19 abs,x:1D long,x:1F
 
 "LDA *" A0
-	A0X*		@EAC;cpu.AL = CPUReadByte();ALUSetNZ8(cpu.AL)
-	A1X*		@EAC;cpu.A = CPUReadWord();ALUSetNZ16(cpu.A)
+	A0X*		@EAC;cpu.A.B.L = CPUReadByte();ALUSetNZ8(cpu.A.B.L)
+	A1X*		@EAC;cpu.A.W = CPUReadWord();ALUSetNZ16(cpu.A.W)
 
 "STA *" 80
-	A0X*		@EAC;MB8 = cpu.AL;CPUWriteByte()
-	A1X*		@EAC;MB16 = cpu.A;CPUWriteWord()
+	A0X*		@EAC;MB8 = cpu.A.B.L;CPUWriteByte()
+	A1X*		@EAC;MB16 = cpu.A.W;CPUWriteWord()
 
 "ADC *"	60 	
-	A0X*		@EAC;cpu.AL = ALUAdc8(cpu.AL,CPUReadByte())
-	A1X*		@EAC;cpu.A = ALUAdc16(cpu.A,CPUReadWord())
+	A0X*		@EAC;cpu.A.B.L = ALUAdc8(cpu.A.B.L,CPUReadByte())
+	A1X*		@EAC;cpu.A.W = ALUAdc16(cpu.A.W,CPUReadWord())
 
 "SBC *" E0
-	A0X*		@EAC;cpu.AL = ALUSbc8(cpu.AL,CPUReadByte(),0)
-	A1X*		@EAC;cpu.A = ALUSbc16(cpu.A,CPUReadWord(),0)
+	A0X*		@EAC;cpu.A.B.L = ALUSbc8(cpu.A.B.L,CPUReadByte(),0)
+	A1X*		@EAC;cpu.A.W = ALUSbc16(cpu.A.W,CPUReadWord(),0)
 
 "CMP *" C0
-	A0X*		@EAC;ALUSbc8(cpu.AL,CPUReadByte(),1)
-	A1X*		@EAC;ALUSbc16(cpu.A,CPUReadWord(),1)
+	A0X*		@EAC;ALUSbc8(cpu.A.B.L,CPUReadByte(),1)
+	A1X*		@EAC;ALUSbc16(cpu.A.W,CPUReadWord(),1)
 
 "AND *" 20
-	A0X*		@EAC;cpu.AL = cpu.AL & CPUReadByte();ALUSetNZ8(cpu.AL)
-	A1X*		@EAC;cpu.A = cpu.A & CPUReadWord();ALUSetNZ16(cpu.A)
+	A0X*		@EAC;cpu.A.B.L = cpu.A.B.L & CPUReadByte();ALUSetNZ8(cpu.A.B.L)
+	A1X*		@EAC;cpu.A.W = cpu.A.W & CPUReadWord();ALUSetNZ16(cpu.A.W)
 
 "EOR *" 40
-	A0X*		@EAC;cpu.AL = cpu.AL ^ CPUReadByte();ALUSetNZ8(cpu.AL)
-	A1X*		@EAC;cpu.A = cpu.A ^ CPUReadWord();ALUSetNZ16(cpu.A)
+	A0X*		@EAC;cpu.A.B.L = cpu.A.B.L ^ CPUReadByte();ALUSetNZ8(cpu.A.B.L)
+	A1X*		@EAC;cpu.A.W = cpu.A.W ^ CPUReadWord();ALUSetNZ16(cpu.A.W)
 
 "ORA *" 00
-	A0X*		@EAC;cpu.AL = cpu.AL | CPUReadByte();ALUSetNZ8(cpu.AL)
-	A1X*		@EAC;cpu.A = cpu.A | CPUReadWord();ALUSetNZ16(cpu.A)
+	A0X*		@EAC;cpu.A.B.L = cpu.A.B.L | CPUReadByte();ALUSetNZ8(cpu.A.B.L)
+	A1X*		@EAC;cpu.A.W = cpu.A.W | CPUReadWord();ALUSetNZ16(cpu.A.W)
 
 // ====================================================================
 
 Group: #imm:2 dir:6 abs:E dir,Y:16 abs,Y:1E
 
 "LDX *" A0
-	A*X0		@EAC;cpu.XL = CPUReadByte();ALUSetNZ8(cpu.XL)
-	A*X1		@EAC;cpu.X = CPUReadWord();ALUSetNZ16(cpu.X)
+	A*X0		@EAC;cpu.X.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L)
+	A*X1		@EAC;cpu.X.W = CPUReadWord();ALUSetNZ16(cpu.X.W)
 
 "LDY *" 9E
-	A*X0		@EAC;cpu.YL = CPUReadByte();ALUSetNZ8(cpu.XL)
-	A*X1		@EAC;cpu.Y = CPUReadWord();ALUSetNZ16(cpu.X)
+	A*X0		@EAC;cpu.Y.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L)
+	A*X1		@EAC;cpu.Y.W = CPUReadWord();ALUSetNZ16(cpu.X.W)
 
 Group: #imm:2 dir:6 abs:E dir,X:16
 
 "STX *" 80
-	A*X0		@EAC;MB8 = cpu.XL;CPUWriteByte()
-	A*X1		@EAC;MB16 = cpu.X;CPUWriteWord()
+	A*X0		@EAC;MB8 = cpu.X.B.L;CPUWriteByte()
+	A*X1		@EAC;MB16 = cpu.X.W;CPUWriteWord()
 
 "STY *" 7E
-	A*X0		@EAC;MB8 = cpu.YL;CPUWriteByte()
-	A*X1		@EAC;MB16 = cpu.Y;CPUWriteWord()
+	A*X0		@EAC;MB8 = cpu.Y.B.L;CPUWriteByte()
+	A*X1		@EAC;MB16 = cpu.Y.W;CPUWriteWord()
 
 Group: dir:64 dir,X:74 abs:9C abs,X:9E
 
@@ -90,12 +90,12 @@ Group: dir:64 dir,X:74 abs:9C abs,X:9E
 Group: #imm:0 dir:4 abs:c
 
 "CPX *"	E0
-	A*X0		@EAC;ALUSbc8(cpu.XL,CPUReadByte(),1)
-	A*X1		@EAC;ALUSbc16(cpu.X,CPUReadWord(),1)
+	A*X0		@EAC;ALUSbc8(cpu.X.B.L,CPUReadByte(),1)
+	A*X1		@EAC;ALUSbc16(cpu.X.W,CPUReadWord(),1)
 
 "CPY *" C0
-	A*X0		@EAC;ALUSbc8(cpu.YL,CPUReadByte(),1)
-	A*X1		@EAC;ALUSbc16(cpu.Y,CPUReadWord(),1)
+	A*X0		@EAC;ALUSbc8(cpu.Y.B.L,CPUReadByte(),1)
+	A*X1		@EAC;ALUSbc16(cpu.Y.W,CPUReadWord(),1)
 
 // ====================================================================
 
@@ -106,54 +106,54 @@ Group: dir:0 abs:8 dir,x:10 abs,x:18
 	A1X* 		@EAC;CPUReadWord();MB16--;CPUWriteWord();ALUSetNZ16(MB16)
 
 "DEC" 	3A
-	A0X* 		cpu.AL--;ALUSetNZ8(cpu.AL)
-	A1X*		cpu.A--;ALUSetNZ16(cpu.A)
+	A0X* 		cpu.A.B.L--;ALUSetNZ8(cpu.A.B.L)
+	A1X*		cpu.A.W--;ALUSetNZ16(cpu.A.W)
 
 "DEX" 	CA
-	A0X* 		cpu.XL--;ALUSetNZ8(cpu.XL)
-	A1X*		cpu.X--;ALUSetNZ16(cpu.X)
+	A0X* 		cpu.X.B.L--;ALUSetNZ8(cpu.X.B.L)
+	A1X*		cpu.X.W--;ALUSetNZ16(cpu.X.W)
 
 "DEY" 	88
-	A0X* 		cpu.YL--;ALUSetNZ8(cpu.YL)
-	A1X*		cpu.Y--;ALUSetNZ16(cpu.Y)
+	A0X* 		cpu.Y.B.L--;ALUSetNZ8(cpu.Y.B.L)
+	A1X*		cpu.Y.W--;ALUSetNZ16(cpu.Y.W)
 
 "INC *" E6
 	A0X* 		@EAC;CPUReadByte();MB8++;CPUWriteByte();ALUSetNZ8(MB8)
 	A1X* 		@EAC;CPUReadWord();MB16++;CPUWriteWord();ALUSetNZ16(MB16)
 
 "INC" 	1A
-	A0X* 		cpu.AL++;ALUSetNZ8(cpu.AL)
-	A1X*		cpu.A++;ALUSetNZ16(cpu.A)
+	A0X* 		cpu.A.B.L++;ALUSetNZ8(cpu.A.B.L)
+	A1X*		cpu.A.W++;ALUSetNZ16(cpu.A.W)
 
 "INX" 	E8
-	A0X* 		cpu.XL++;ALUSetNZ8(cpu.XL)
-	A1X*		cpu.X++;ALUSetNZ16(cpu.X)
+	A0X* 		cpu.X.B.L++;ALUSetNZ8(cpu.X.B.L)
+	A1X*		cpu.X.W++;ALUSetNZ16(cpu.X.W)
 
 "INY" 	C8
-	A0X* 		cpu.YL++;ALUSetNZ8(cpu.YL)
-	A1X*		cpu.Y++;ALUSetNZ16(cpu.Y)
+	A0X* 		cpu.Y.B.L++;ALUSetNZ8(cpu.Y.B.L)
+	A1X*		cpu.Y.W++;ALUSetNZ16(cpu.Y.W)
 
 "BIT *"	24 	
-	A0X* 		@EAC;ALUBitTest8(CPUReadByte(),cpu.AL)
-	A1X*		@EAC;ALUBitTest16(CPUReadWord(),cpu.A)
+	A0X* 		@EAC;ALUBitTest8(CPUReadByte(),cpu.A.B.L)
+	A1X*		@EAC;ALUBitTest16(CPUReadWord(),cpu.A.W)
 
 Group: #imm8:0
 
 "BIT *"	89
-	A0X*		@EAC;ALUSetZ8(CPUReadByte() & cpu.AL)
-	A1X* 		@EAC;ALUSetZ16(CPUReadWord() & cpu.A)
+	A0X*		@EAC;ALUSetZ8(CPUReadByte() & cpu.A.B.L)
+	A1X* 		@EAC;ALUSetZ16(CPUReadWord() & cpu.A.W)
 
 // ====================================================================
 
 Group: dir:0 abs:8
 
 "TRB *" 14
-	A0X* 		@EAC;CPUReadByte();ALUSetZ8(MB8 & cpu.AL);MB8 &= (cpu.AL ^ 0xFF);CPUWriteByte()
-	A1X* 		@EAC;CPUReadWord();ALUSetZ16(MB16 & cpu.A);MB16 &= (cpu.A ^ 0xFFFF);CPUWriteWord()	
+	A0X* 		@EAC;CPUReadByte();ALUSetZ8(MB8 & cpu.A.B.L);MB8 &= (cpu.A.B.L ^ 0xFF);CPUWriteByte()
+	A1X* 		@EAC;CPUReadWord();ALUSetZ16(MB16 & cpu.A.W);MB16 &= (cpu.A.W ^ 0xFFFF);CPUWriteWord()	
 
 "TSB *" 04		
-	A0X* 		@EAC;CPUReadByte();ALUSetZ8(MB8 & cpu.AL);MB8 |= cpu.AL;CPUWriteByte()
-	A1X* 		@EAC;CPUReadWord();ALUSetZ16(MB16 & cpu.A);MB16 |= cpu.A;CPUWriteWord()		
+	A0X* 		@EAC;CPUReadByte();ALUSetZ8(MB8 & cpu.A.B.L);MB8 |= cpu.A.B.L;CPUWriteByte()
+	A1X* 		@EAC;CPUReadWord();ALUSetZ16(MB16 & cpu.A.W);MB16 |= cpu.A.W;CPUWriteWord()		
 
 // ====================================================================
 
@@ -163,29 +163,29 @@ Group: dir:0 abs:8 dir,x:10 abs,x:18
 	A0X*		@EAC;CPUReadByte();ALUAsl8(&MB8);CPUWriteByte()
 	A1X*		@EAC;CPUReadWord();ALUAsl16(&MB16);CPUWriteWord()	
 "ASL A" 0A
-	A0X*		ALUAsl8(&cpu.AL)
-	A1X*		ALUAsl16(&cpu.A)
+	A0X*		ALUAsl8(&cpu.A.B.L)
+	A1X*		ALUAsl16(&cpu.A.W)
 
 "LSR *" 46		
 	A0X*		@EAC;CPUReadByte();ALULsr8(&MB8);CPUWriteByte()
 	A1X*		@EAC;CPUReadWord();ALULsr16(&MB16);CPUWriteWord()	
 "LSR A" 4A
-	A0X*		ALULsr8(&cpu.AL)
-	A1X*		ALULsr16(&cpu.A)
+	A0X*		ALULsr8(&cpu.A.B.L)
+	A1X*		ALULsr16(&cpu.A.W)
 
 "ROL *" 26		
 	A0X*		@EAC;CPUReadByte();ALURol8(&MB8);CPUWriteByte()
 	A1X*		@EAC;CPUReadWord();ALURol16(&MB16);CPUWriteWord()	
 "ROL A" 2A
-	A0X*		ALURol8(&cpu.AL)
-	A1X*		ALURol16(&cpu.A)
+	A0X*		ALURol8(&cpu.A.B.L)
+	A1X*		ALURol16(&cpu.A.W)
 
 "ROR *" 66		
 	A0X*		@EAC;CPUReadByte();ALURor8(&MB8);CPUWriteByte()
 	A1X*		@EAC;CPUReadWord();ALURor16(&MB16);CPUWriteWord()	
 "ROR A" 6A
-	A0X*		ALURor8(&cpu.AL)
-	A1X*		ALURor16(&cpu.A)
+	A0X*		ALURor8(&cpu.A.B.L)
+	A1X*		ALURor16(&cpu.A.W)
 
 // ====================================================================
 
@@ -309,28 +309,28 @@ Group: abs:20 (abs,X):FC
 // ====================================================================
 
 "PHA"	48
-	A0X*		CPUPush8(cpu.AL)
-	A1X* 		CPUPush16(cpu.A)
+	A0X*		CPUPush8(cpu.A.B.L)
+	A1X* 		CPUPush16(cpu.A.W)
 
 "PHX"	DA
-	A*X0		CPUPush8(cpu.XL)
-	A*X1 		CPUPush16(cpu.X)
+	A*X0		CPUPush8(cpu.X.B.L)
+	A*X1 		CPUPush16(cpu.X.W)
 
 "PHY"	5A
-	A*X0		CPUPush8(cpu.YL)
-	A*X1 		CPUPush16(cpu.Y)
+	A*X0		CPUPush8(cpu.Y.B.L)
+	A*X1 		CPUPush16(cpu.Y.W)
 
 "PLA"	68
-	A0X*		cpu.AL = CPUPop8();ALUSetNZ8(cpu.AL)
-	A1X* 		cpu.A = CPUPop16();ALUSetNZ16(cpu.A)
+	A0X*		cpu.A.B.L = CPUPop8();ALUSetNZ8(cpu.A.B.L)
+	A1X* 		cpu.A.W = CPUPop16();ALUSetNZ16(cpu.A.W)
 
 "PLX"	FA
-	A*X0		cpu.XL = CPUPop8();ALUSetNZ8(cpu.XL)
-	A*X1 		cpu.X = CPUPop16();ALUSetNZ16(cpu.X)
+	A*X0		cpu.X.B.L = CPUPop8();ALUSetNZ8(cpu.X.B.L)
+	A*X1 		cpu.X.W = CPUPop16();ALUSetNZ16(cpu.X.W)
 
 "PLY"	7A
-	A*X0		cpu.YL = CPUPop8();ALUSetNZ8(cpu.YL)
-	A*X1 		cpu.Y = CPUPop16();ALUSetNZ16(cpu.Y)
+	A*X0		cpu.Y.B.L = CPUPop8();ALUSetNZ8(cpu.Y.B.L)
+	A*X1 		cpu.Y.W = CPUPop16();ALUSetNZ16(cpu.Y.W)
 
 // ====================================================================
 
@@ -358,55 +358,55 @@ Group: abs:20 (abs,X):FC
 
 
 "TAX" AA
-	A*X0		cpu.XL = cpu.AL;ALUSetNZ8(cpu.XL)
-	A*X1		cpu.X = cpu.A;ALUSetNZ16(cpu.X)
+	A*X0		cpu.X.B.L = cpu.A.B.L;ALUSetNZ8(cpu.X.B.L)
+	A*X1		cpu.X.W = cpu.A.W;ALUSetNZ16(cpu.X.W)
 
 "TAY" A8
-	A*X0		cpu.YL = cpu.AL;ALUSetNZ8(cpu.YL)
-	A*X1		cpu.Y = cpu.A;ALUSetNZ16(cpu.Y)
+	A*X0		cpu.Y.B.L = cpu.A.B.L;ALUSetNZ8(cpu.Y.B.L)
+	A*X1		cpu.Y.W = cpu.A.W;ALUSetNZ16(cpu.Y.W)
 
 "TYX" BB
-	A*X0		cpu.XL = cpu.YL;ALUSetNZ8(cpu.XL)
-	A*X1		cpu.X = cpu.Y;ALUSetNZ16(cpu.X)
+	A*X0		cpu.X.B.L = cpu.Y.B.L;ALUSetNZ8(cpu.X.B.L)
+	A*X1		cpu.X.W = cpu.Y.W;ALUSetNZ16(cpu.X.W)
 
 "TXY" 9B
-	A*X0		cpu.YL = cpu.XL;ALUSetNZ8(cpu.YL)
-	A*X1		cpu.Y = cpu.X;ALUSetNZ16(cpu.Y)
+	A*X0		cpu.Y.B.L = cpu.X.B.L;ALUSetNZ8(cpu.Y.B.L)
+	A*X1		cpu.Y.W = cpu.X.W;ALUSetNZ16(cpu.Y.W)
 
 "TXA" 8A
-	A0X* 		cpu.AL = cpu.XL;ALUSetNZ8(cpu.AL)
-	A1X*		cpu.A = cpu.X;ALUSetNZ16(cpu.A)
+	A0X* 		cpu.A.B.L = cpu.X.B.L;ALUSetNZ8(cpu.A.B.L)
+	A1X*		cpu.A.W = cpu.X.W;ALUSetNZ16(cpu.A.W)
 
 "TYA" 98
-	A0X* 		cpu.AL = cpu.YL;ALUSetNZ8(cpu.AL)
-	A1X*		cpu.A = cpu.Y;ALUSetNZ16(cpu.A)
+	A0X* 		cpu.A.B.L = cpu.Y.B.L;ALUSetNZ8(cpu.A.B.L)
+	A1X*		cpu.A.W = cpu.Y.W;ALUSetNZ16(cpu.A.W)
 
 "TSX" BA
-	A0X*		cpu.XL = cpu.S & 0xFF;ALUSetNZ8(cpu.XL)
-	A1X*		cpu.X = cpu.S;ALUSetNZ16(cpu.X)
+	A0X*		cpu.X.B.L = cpu.S & 0xFF;ALUSetNZ8(cpu.X.B.L)
+	A1X*		cpu.X.W = cpu.S;ALUSetNZ16(cpu.X.W)
 
 "TXS" 9A
-	A0X* 		cpu.S = cpu.XL;ALUSetNZ8(cpu.XL)
-	A1X*		cpu.S = cpu.X 			// Doesn't set NZ
+	A0X* 		cpu.S = cpu.X.B.L;ALUSetNZ8(cpu.X.B.L)
+	A1X*		cpu.S = cpu.X.W 			// Doesn't set NZ
 
 // ====================================================================
 
 "TCD" 5B
-	A*X* 		cpu.D = cpu.A;ALUSetNZ16(cpu.D)
+	A*X* 		cpu.D = cpu.A.W;ALUSetNZ16(cpu.D)
 
 "TCS" 1B
-	A*X* 		cpu.S = cpu.A 			// Doesn't set NZ
+	A*X* 		cpu.S = cpu.A.W 			// Doesn't set NZ
 
 "TDC" 7B
-	A*X*		cpu.A = cpu.D;ALUSetNZ16(cpu.A)
+	A*X*		cpu.A.W = cpu.D;ALUSetNZ16(cpu.A.W)
 
 "TSC" 3B
-	A*X*		cpu.A = cpu.S;ALUSetNZ16(cpu.A)
+	A*X*		cpu.A.W = cpu.S;ALUSetNZ16(cpu.A.W)
 
 // ====================================================================
 
 "XBA" EB
-	A*X*		MB8 = cpu.AL;cpu.AL = cpu.AH;cpu.AH = MB8;ALUSetNZ8(cpu.AL)
+	A*X*		MB8 = cpu.A.B.L;cpu.A.B.L = cpu.A.B.H;cpu.A.B.H = MB8;ALUSetNZ8(cpu.A.B.L)
 
 "XCE" FB
 	A*X* 		MB8 = cpu.P.E;cpu.P.E = cpu.P.C;cpu.P.C = MB8;if (cpu.P.E != 0) { cpu.P.M = cpu.P.X = 1;cpu.S = (cpu.S & 0xFF)|0x100;ALUUpdatePS(); }
