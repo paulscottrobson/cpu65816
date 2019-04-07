@@ -46,17 +46,18 @@ class Opcode(object):
 	def process(self,code,aMode):
 		if code.find("@EAC") >= 0:
 			assert aMode.lower() in Opcode.MODES,"Unknown mode "+aMode.lower()
-			#code = code.replace("@EAC","EAC_"+Opcode.MODES[aMode.lower()].upper()+"()")
-			code = code.replace("@EAC","")
+			code = code.replace("@EAC","EAC_"+Opcode.MODES[aMode.lower()].upper()+"()")
+			#code = code.replace("@EAC","")
 		return code
 
 Opcode.MODES = { "(dir,x)":"indexind","stk,s":"stackrel","dir":"direct","[dir]":"dirfarind",	\
 				 "#imm":"immdepend","#imm8":"imm8","#imm16":"imm16","abs":"absolute", 			\
-				 "long":"far","(dir),y":"indindexy","(dir)":"indirect",							\
-				 "(stk,s),y":"stackrelindindex","dir,x":"directx","dir,y":"directy", 			\
-				 "[dir],y":"farindindex","abs,y":"absy","abs,x":"absx","long,x":"longx",		\
-				 "dir,y":"diry","abs,y":"absy","rel8":"REL8","rel16":"REL16",					\
-				 "[abs]":"absfarind","(abs)":"absind","(abs,x)":"indexindabs"
+				 "long":"long","(dir),y":"dirindy","(dir)":"dirind",							\
+				 "(stk,s),y":"stackrelindx","dir,x":"directx","dir,y":"directy", 			\
+				 "[dir],y":"dirfarindy","abs,y":"absolutey","abs,x":"absolutex","long,x":"longx",		\
+				 "rel8":"REL8","rel16":"REL16",					\
+				 "[abs]":"absfarind","(abs)":"absind",											\
+				 "(jmpabs,x)":"jmpabsindx","jmpabs":"jmpabs","(jmpabs)":"jmpabsind"
 } 
 
 opcodes = []

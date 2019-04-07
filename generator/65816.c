@@ -84,12 +84,75 @@ static void ALUUpdatePS() {}
 //
 //								Effective Address Calculation
 //
+//					(Note : some of the wrapping for emulation mode is WRONG)
+//
 // ***********************************************************************************************
+
+//
+//								Immediate. MA is PC, skip over operand
+// 
+#define EAC_IMM8() 			MA = cpu.PC;cpu.PC++
+#define EAC_IMM16()			MA = cpu.PC;cpu.PC = cpu.PC+2
+#define EAC_IMMDEPEND()		MA = cpu.PC;cpu.PC = cpu.PC+((cpu.P.M != 0) ? 2 : 1)
+//
+//								Relative Offsets, put the final address in MA
+//
+#define __EAC_CALCREL16()	MA = (cpu.PC & 0xFF0000) | ((cpu.PC+MB16) & 0xFFFF)
+//
+#define EAC_REL8()			MA = cpu.PC;CPUReadByte(cpu.PC);cpu.PC++;MB16 = (MB8 & 0x80) ? (MB8|0xFF00) : MB8;__EAC_CALCREL16()
+#define EAC_REL16()			MA = cpu.PC;CPUReadWord(cpu.PC);cpu.PC+=2;__EAC_CALCREL16()
+//
+// 								Direct modes like 6502 offset by D. always in Bank 0
+//
+#define __EAC_DIRECT(of)	MA = cpu.PC;CPUReadByte();cpu.PC++;MA = (MB8 + cpu.D + (of)) & 0xFFFF
+#define EAC_DIRECT()		__EAC_DIRECT(0)
+#define EAC_DIRECTX()		__EAC_DIRECT(cpu.X.W)
+#define EAC_DIRECTY()		__EAC_DIRECT(cpu.Y.W)
+//
+//								Absolute like 6502 but in DBR page.
+//
+#define __EAC_ABSOLUTE(of)	MA = cpu.PC;CPUReadWord();cpu.PC = cpu.PC+2;MA = (MB16 + (of)) & 0x00FFFF;MA |= (cpu.DBR << 16)
+#define EAC_ABSOLUTE()		__EAC_ABSOLUTE(0)
+#define EAC_ABSOLUTEX()		__EAC_ABSOLUTE(cpu.X.W)
+#define EAC_ABSOLUTEY()		__EAC_ABSOLUTE(cpu.Y.W)
+//
+//								Long is a 24 bit address.
+//
+#define EAC_LONG()			MA = cpu.PC;CPUReadWord();MA += 2;CPUReadByte();cpu.PC = cpu.PC+3;MA = (MB8 << 16)|MB16;
+#define EAC_LONGX()			EAC_LONG();MA = MA + cpu.X.W
+#define EAC_LONGY()			EAC_LONG();MA = MA + cpu.X.Y
+//
+//								[Address] which are far indirect.
+//
+#define __EAC_READFAR()		CPUReadWord();MA += 2;CPUReadByte();MA = MB16 | (MB8 << 16)
+#define EAC_DIRFARIND()		EAC_DIRECT();__EAC_READFAR()
+#define EAC_ABSFARIND()		EAC_ABSOLUTE();__EAC_READFAR()
+#define EAC_DIRFARINDY()	EAC_DIRECT();__EAC_READFAR();MA = MA + cpu.Y.W
+//
+//								(Address) which are near indirect
+//
+#define __EACDIRINDREAD()	CPUReadWord();MA = MB16 | (cpu.DBR << 16)
+#define EAC_ABSIND()		EAC_ABSOLUTE();__EACDIRINDREAD()
+#define EAC_DIRIND()		EAC_DIRECT();__EACDIRINDREAD()
+#define EAC_DIRINDY()		EAC_DIRECT();__EACDIRINDREAD();MA += cpu.Y.W
+//
+//								Indexed Indirect.
+//
+#define EAC_INDEXIND()		EAC_DIRECTX();__EACDIRINDREAD()
+//
+//								Jump, which use PC bank not DBR
+//
+#define EAC_JMPABS()		MA = cpu.PC;CPUReadWord();cpu.PC+=2;MA = (cpu.PC & 0xFF0000)|MB16
+#define EAC_JMPABSIND()		EAC_ABSOLUTE();CPUReadWord();MA = (cpu.PC & 0xFF0000)|MB16
+#define EAC_JMPABSINDX()	EAC_JMPABS();CPUReadWord();MB16 = MB16 + cpu.X.W;MA = (cpu.PC & 0xFF0000)|MB16
+//
+//								Stack ops, always in bank 0
+//
+#define EAC_STACKREL()		MA = cpu.PC;CPUReadByte();cpu.PC++;MA = (cpu.S + MB8) & 0xFFFF
+#define EAC_STACKRELINDX()	EAC_STACKREL();MA = (MA + cpu.Y.W) & 0xFFFF;MA |= (cpu.DBR << 16)
 
 static void test(int n) {
 	switch(n) {
 		#include "65816_opcodes.h"
 	}
 }
-
-
