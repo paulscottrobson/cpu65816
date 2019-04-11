@@ -22,7 +22,7 @@
 //
 // ====================================================================
 
-Group: (dir,X):1 stk,S:3 dir:5 [dir]:7 #imm:9 abs:D long:F (dir),Y:11 (dir):12 (stk,S),Y:13 dir,x:15 [dir],y:17 abs,y:19 abs,x:1D long,x:1F
+Group: (dir,X):1 stk,S:3 dir:5 [dir]:7 #imma:9 abs:D long:F (dir),Y:11 (dir):12 (stk,S),Y:13 dir,x:15 [dir],y:17 abs,y:19 abs,x:1D long,x:1F
 
 "LDA *" A0
 	A0X*		@EAC;cpu.A.B.L = CPUReadByte();ALUSetNZ8(cpu.A.B.L)
@@ -58,7 +58,7 @@ Group: (dir,X):1 stk,S:3 dir:5 [dir]:7 #imm:9 abs:D long:F (dir),Y:11 (dir):12 (
 
 // ====================================================================
 
-Group: #imm:2 dir:6 abs:E dir,Y:16 abs,Y:1E
+Group: #immx:2 dir:6 abs:E dir,Y:16 abs,Y:1E
 
 "LDX *" A0
 	A*X0		@EAC;cpu.X.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L)
@@ -68,7 +68,7 @@ Group: #imm:2 dir:6 abs:E dir,Y:16 abs,Y:1E
 	A*X0		@EAC;cpu.Y.B.L = CPUReadByte();ALUSetNZ8(cpu.X.B.L)
 	A*X1		@EAC;cpu.Y.W = CPUReadWord();ALUSetNZ16(cpu.X.W)
 
-Group: #imm:2 dir:6 abs:E dir,X:16
+Group: #immx:2 dir:6 abs:E dir,X:16
 
 "STX *" 80
 	A*X0		@EAC;MB8 = cpu.X.B.L;CPUWriteByte()
@@ -87,7 +87,7 @@ Group: dir:64 dir,X:74 abs:9C abs,X:9E
 
 // ====================================================================
 
-Group: #imm:0 dir:4 abs:c
+Group: #immx:0 dir:4 abs:c
 
 "CPX *"	E0
 	A*X0		@EAC;ALUSbc8(cpu.X.B.L,CPUReadByte(),1)
@@ -221,23 +221,24 @@ Group: dir:0 abs:8 dir,x:10 abs,x:18
 
 // ====================================================================
 
-Group: long:5C [abs]:DC
+Group: abs:4C (jabs):6C (jabs,x):7C
 
-"JMP *" 00
-	A*X*		@EAC;cpu.PC = MA | (cpu.PC & 0xFF0000)
+"JMP *" 00 
+	A*X* 		@EAC;cpu.PC = (MA & 0xFFFF) | (cpu.PC & 0xFF0000)
 
-Group: jmpabs:4C (jmpabs):6C (jmpabs,X):7C
+"JMP long" 5C
+	A*X* 		@EAC;cpu.PC = MA
 
-"JMP *" 00
-	A*X*		@EAC;cpu.PC = MA | (cpu.PC & 0xFF0000)
+"JMP [jabs]" DC
+	A*X* 		@EAC;cpu.PC = MA
 
 "JSL long" 22
-	A*X*		@EAC;addr = MA;cpu.PC--;CPUPush8(cpu.PC >> 16);CPUPush16(cpu.PC & 0xFFFF);cpu.PC = addr | (cpu.PC & 0xFF0000)
+	A*X* 		@EAC;cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);CPUPush8(cpu.PC >> 16);cpu.PC = MA
 
-Group: jmpabs:20 (jmpabs,X):FC
+Group: abs:20 (jabs,x):FC
 
 "JSR *" 00
-	A*X*		@EAC;addr = MA;cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = addr | (cpu.PC & 0xFF0000)
+	A*X*		@EAC;cpu.PC--;CPUPush16(cpu.PC & 0xFFFF);cpu.PC = (MA & 0xFFFF) | (cpu.PC & 0xFF0000)		
 
 // ====================================================================
 

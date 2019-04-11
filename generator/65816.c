@@ -89,69 +89,76 @@ static void ALUUpdatePS() {}
 //
 // ***********************************************************************************************
 
+#define FETCHWORD()				MA = cpu.PC;CPUReadWord();cpu.PC += 2
+#define FETCHBYTE() 			MA = cpu.PC;CPUReadByte();cpu.PC += 1
 //
-//								Immediate. MA is PC, skip over operand
+//		Read 3 bytes at MA into MA
+//
+#define READFAR()				CPUReadWord();MA = MA+2;CPUReadByte();MA = MB16 | (MB8 << 16)
+//
+//		Absolute addressing - uses DBR
+//
+#define EAC_ABSOLUTE()			FETCHWORD();MA = (cpu.DBR << 16) | MB16
+#define EAC_ABSOLUTE_IDX_X()	EAC_ABSOLUTE();MA = MA + cpu.X.W
+#define EAC_ABSOLUTE_IDX_Y()	EAC_ABSOLUTE();MA = MA + cpu.Y.W
+//
+//		Absolute indirect - non indexed goes through page 0
+//
+#define EAC_JABSOLUTE_IND()		FETCHWORD();MA=MB16;CPUReadWord();MA = MB16
+//
+//		Absolute indexed indirect - indexed goes through page K.
+//
+#define EAC_JABSOLUTE_IDX_X_IND() FETCHWORD();MA=((MB16+cpu.X.W) & 0xFFFF)|(cpu.PC & 0xFF0000);CPUReadWord();MA = MB16
+//
+//		Absolute far indirect
+//
+#define EAC_JABSOLUTE_IND_FAR()	FETCHWORD();MA = MB16;READFAR()
+//
+//		Direct addressing - uses D
+//
+#define EAC_DIRECT()			FETCHBYTE();MA = (cpu.D + MB8) & 0xFFFF
+#define EAC_DIRECT_IDX_X()		EAC_DIRECT();MA = MA + cpu.X.W
+#define EAC_DIRECT_IDX_Y()		EAC_DIRECT();MA = MA + cpu.Y.W
+//
+//		Absolute via direct pointer - uses DBR
+//
+#define EAC_DIRECT_IND()		EAC_DIRECT();CPUReadWord();MA = (cpu.DBR << 16) | MB16
+//
+//		Absolute via direct indexed - uses DBR
+//
+#define EAC_DIRECT_IND_IDX_Y()	EAC_DIRECT_IND();MA = MA + cpu.Y.W
+//
+//		Indirect via X Indexed - uses DBR
+//	
+#define EAC_DIRECT_IDX_X_IND()	EAC_DIRECT_IDX_X();CPUReadWord();MA = MB16 | (cpu.DBR << 16)
+//
+//		Far via direct pointer 
+//
+#define EAC_DIRECT_IND_FAR()	EAC_DIRECT();READFAR();
+#define EAC_DIRECT_IND_FAR_IDX_Y()	EAC_DIRECT();READFAR();MA = MA + cpu.Y.W
+//
+//		8 or 16 bit immediate.
+//
+#define EAC_IMM_8() 			MA = cpu.PC;cpu.PC = cpu.PC + 1
+#define EAC_IMM_16() 			MA = cpu.PC;cpu.PC = cpu.PC + 2
+//
+//		Long
+//
+#define EAC_LONG()				FETCHWORD();FETCHBYTE();MA = (MB8 << 16) | MB16
+#define EAC_LONG_IDX_X() 		EAC_LONG();MA = MA + cpu.X.W
 // 
-#define EAC_IMM8() 			MA = cpu.PC;cpu.PC++
-#define EAC_IMM16()			MA = cpu.PC;cpu.PC = cpu.PC+2
-#define EAC_IMMDEPEND()		MA = cpu.PC;cpu.PC = cpu.PC+((cpu.P.M != 0) ? 2 : 1)
+//		8 and 16 bit relative EAC.
 //
-//								Relative Offsets, put the final address in MA
+#define EAC_RELATIVE_16()		FETCHWORD();MA = (cpu.PC & 0xFF0000) | MB16
+#define EAC_RELATIVE_8()		FETCHBYTE();MB16 = (MB8 & 0x80) ? (MB8|0xFF00):MB8;MA = (cpu.PC & 0xFF0000) | MB16
 //
-#define __EAC_CALCREL16()	MA = (cpu.PC & 0xFF0000) | ((cpu.PC+MB16) & 0xFFFF)
+//		Stack offset
 //
-#define EAC_REL8()			MA = cpu.PC;CPUReadByte(cpu.PC);cpu.PC++;MB16 = (MB8 & 0x80) ? (MB8|0xFF00) : MB8;__EAC_CALCREL16()
-#define EAC_REL16()			MA = cpu.PC;CPUReadWord(cpu.PC);cpu.PC+=2;__EAC_CALCREL16()
+#define EAC_STK_IDX_S()			FETCHWORD();MA = (MB16+cpu.S) & 0xFFFF
 //
-// 								Direct modes like 6502 offset by D. always in Bank 0
+//		Stack offset indirect y indexed
 //
-#define __EAC_DIRECT(of)	MA = cpu.PC;CPUReadByte();cpu.PC++;MA = (MB8 + cpu.D + (of)) & 0xFFFF
-#define EAC_DIRECT()		__EAC_DIRECT(0)
-#define EAC_DIRECTX()		__EAC_DIRECT(cpu.X.W)
-#define EAC_DIRECTY()		__EAC_DIRECT(cpu.Y.W)
-//
-//								Absolute like 6502 but in DBR page.
-//
-#define __EAC_ABSOLUTE(of)	MA = cpu.PC;CPUReadWord();cpu.PC = cpu.PC+2;MA = (MB16 + (of)) & 0x00FFFF;MA |= (cpu.DBR << 16)
-#define EAC_ABSOLUTE()		__EAC_ABSOLUTE(0)
-#define EAC_ABSOLUTEX()		__EAC_ABSOLUTE(cpu.X.W)
-#define EAC_ABSOLUTEY()		__EAC_ABSOLUTE(cpu.Y.W)
-//
-//								Long is a 24 bit address.
-//
-#define EAC_LONG()			MA = cpu.PC;CPUReadWord();MA += 2;CPUReadByte();cpu.PC = cpu.PC+3;MA = (MB8 << 16)|MB16;
-#define EAC_LONGX()			EAC_LONG();MA = MA + cpu.X.W
-#define EAC_LONGY()			EAC_LONG();MA = MA + cpu.X.Y
-//
-//								[Address] which are far indirect. Always reads from Bank 0
-//
-#define __EAC_READFAR()		MA &= 0xFFFF;CPUReadWord();MA += 2;CPUReadByte();MA = MB16 | (MB8 << 16)
-#define EAC_DIRFARIND()		EAC_DIRECT();__EAC_READFAR()
-#define EAC_ABSFARIND()		EAC_ABSOLUTE();__EAC_READFAR()
-#define EAC_DIRFARINDY()	EAC_DIRECT();__EAC_READFAR();MA = MA + cpu.Y.W
-//
-//								(Address) which are near indirect, reads from Bank 0
-//
-#define __EACDIRINDREAD()	MA &= 0xFFFF;CPUReadWord();MA = MB16;
-#define EAC_ABSIND()		EAC_ABSOLUTE();__EACDIRINDREAD()
-#define EAC_DIRIND()		EAC_DIRECT();__EACDIRINDREAD()
-#define EAC_DIRINDY()		EAC_DIRECT();__EACDIRINDREAD();MA += cpu.Y.W
-//
-//								Indexed Indirect.
-//
-#define EAC_INDEXIND()		EAC_DIRECTX();__EACDIRINDREAD()
-//
-//								Jump, which use PC bank not DBR
-//
-#define EAC_JMPABS()		EAC_ABSOLUTE();MA &= 0xFFFF;CPUReadWord();MA = MB16;
-#define __EAC_JUMPABSI(of)	EAC_ABSOLUTE();MA = ((MA+(of)) & 0xFFFF)|(cpu.PC & 0xFF0000);CPUReadWord();MA = MB16;
-#define EAC_JMPABSIND()		__EAC_JUMPABSI(0)
-#define EAC_JMPABSINDX()	__EAC_JUMPABSI(cpu.X.W)
-//
-//								Stack ops, always in bank 0
-//
-#define EAC_STACKREL()		MA = cpu.PC;CPUReadByte();cpu.PC++;MA = (cpu.S + MB8) & 0xFFFF
-#define EAC_STACKRELINDX()	EAC_STACKREL();MA = (MA + cpu.Y.W) & 0xFFFF;MA |= (cpu.DBR << 16)
+#define EAC_STK_IDX_S_IND_Y()	EAC_STK_IDX_S();CPUReadWord();MA = ((cpu.DBR << 16)|MB16)+cpu.Y.W
 
 static void test(int n) {
 	switch(n) {

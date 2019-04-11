@@ -40,24 +40,46 @@ class Opcode(object):
 				count += 1
 		assert count == 1
 		h.write("case 0x{4:03x}: // {0:10} [${1:02x}] A{2}X{3}\n".format(asm,opcode & 0xFF,aConst,xConst,opcode))
-		code = self.process(code,asm.split(" ")[-1])
+		addrMode = asm.split(" ")[-1].lower().strip()
+		if addrMode == "#imma":
+			addrMode = "#imm16" if aConst != 0 else "#imm8"
+		if addrMode == "#immx":
+			addrMode = "#imm16" if xConst != 0 else "#imm8"
+		code = self.process(code,addrMode)
 		h.write("    {0};break;\n\n".format(code))
 
 	def process(self,code,aMode):
 		if code.find("@EAC") >= 0:
 			assert aMode.lower() in Opcode.MODES,"Unknown mode "+aMode.lower()
-			code = code.replace("@EAC","EAC_"+Opcode.MODES[aMode.lower()].upper()+"()")
+			code = code.replace("@EAC","EAC_"+Opcode.MODES[aMode.lower()].upper().replace(".","_")+"()")
 			#code = code.replace("@EAC","")
 		return code
 
-Opcode.MODES = { "(dir,x)":"indexind","stk,s":"stackrel","dir":"direct","[dir]":"dirfarind",	\
-				 "#imm":"immdepend","#imm8":"imm8","#imm16":"imm16","abs":"absolute", 			\
-				 "long":"long","(dir),y":"dirindy","(dir)":"dirind",							\
-				 "(stk,s),y":"stackrelindx","dir,x":"directx","dir,y":"directy", 			\
-				 "[dir],y":"dirfarindy","abs,y":"absolutey","abs,x":"absolutex","long,x":"longx",		\
-				 "rel8":"REL8","rel16":"REL16",					\
-				 "[abs]":"absfarind","(abs)":"absind",											\
-				 "(jmpabs,x)":"jmpabsindx","jmpabs":"jmpabs","(jmpabs)":"jmpabsind"
+Opcode.MODES = { 			
+	"#imm8":	"imm.8",
+	"#imm16":	"imm.16",
+	"abs":		"absolute",					
+	"abs,x":	"absolute.idx.x",					
+	"abs,y":	"absolute.idx.y",					
+	"dir": 		"direct",
+	"dir,x": 	"direct.idx.x",
+	"dir,y": 	"direct.idx.y",
+	"(dir)":	"direct.ind",
+	"[dir]":	"direct.ind.far",
+	"[dir],y":	"direct.ind.far.idx.y",
+	"(dir,x)":	"direct.idx.x.ind",
+	"(dir),y":	"direct.ind.idx.y",
+	"long":		"long",		
+	"long,x":	"long.idx.x",			
+	"stk,s":	"stk.idx.s",
+	"(stk,s),y":"stk.idx.s.ind.y",
+	"rel8":		"relative.8",
+	"rel16":	"relative.16",
+
+	"[jabs]":	"jabsolute.ind.far",
+	"(jabs)":	"jabsolute.ind",
+	"(jabs,x)":	"jabsolute.idx.x.ind"
+
 } 
 
 opcodes = []
@@ -69,7 +91,7 @@ currentGroup = []
 for l in src:
 	processed = False
 	#
-	m = re.match('^\\"([A-Za-z0-9\\#\\s\\*]+)\\"\\s*([0-9A-F]+)\s*$',l)
+	m = re.match('^\\"([A-Za-z0-9\\#\\s\\*\\[\\]]+)\\"\\s*([0-9A-F]+)\s*$',l)
 	if m is not None:
 		newOpcode = Opcode(m.group(1).lower(),int(m.group(2),16),[x for x in currentGroup])
 		opcodes.append(newOpcode)
